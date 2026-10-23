@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GrapeSEED Kim Đồng - App Giáo Viên (Tinh giản)</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="GrapeSEED KD" />
+  <meta name="theme-color" content="#4f46e5" />
+  <style>
+    :root {
+      --background: #f8fafc;
+      --foreground: #0f172a;
+      --card: #ffffff;
+      --muted: #f1f5f9;
+      --muted-foreground: #64748b;
+      --border: #e2e8f0;
+      --primary: #4f46e5;
+      --primary-foreground: #ffffff;
+      --secondary: #e2e8f0;
+      --secondary-foreground: #1e293b;
+      --accent: #eef2ff;
+      --accent-foreground: #312e81;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #0f172a;
+        --foreground: #f8fafc;
+        --card: #1e293b;
+        --muted: #1e293b;
+        --muted-foreground: #94a3b8;
+        --border: #334155;
+        --primary: #6366f1;
+        --primary-foreground: #ffffff;
+        --secondary: #334155;
+        --secondary-foreground: #f8fafc;
+        --accent: #1e1b4b;
+        --accent-foreground: #e0e7ff;
+      }
+    }
+    body { background: var(--background); color: var(--foreground); }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-2 sm:p-4">
+
+  <!-- Mobile App Container -->
+  <div id="appWrapper" class="max-w-[420px] mx-auto bg-[var(--card)] border border-[var(--border)] rounded-[24px] shadow-lg overflow-hidden flex flex-col min-h-[740px]">
+
+    <!-- Minimalist Top Header -->
+    <div class="bg-[var(--sidebar)] border-b border-[var(--border)] px-3.5 py-2.5 space-y-2">
+      <!-- Row 1: Teacher Selector + Active Class Pill -->
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-1.5 flex-1">
+          <span class="text-xs font-bold text-[var(--primary)]">GS</span>
+          <select id="teacherSelect" onchange="onFilterChange()" class="flex-1 bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-lg px-2 py-1 text-xs font-semibold focus:outline-none">
+            <option value="ALL">👤 Tất cả Giáo viên</option>
+            <option value="Tú">👤 Cô Tú</option>
+            <option value="Minh Anh">👤 Cô Minh Anh</option>
+            <option value="Huyền bé">👤 Cô Huyền bé</option>
+            <option value="Phương">👤 Cô Phương</option>
+            <option value="Mai">👤 Cô Mai</option>
+            <option value="Hường">👤 Cô Hường</option>
+            <option value="Khánh">👤 Cô Khánh</option>
+            <option value="Nhung">👤 Chị Nhung</option>
+            <option value="Kate">👤 Cô Kate</option>
+            <option value="Eduard">👤 Thầy Eduard</option>
+            <option value="Mak">👤 Thầy Mak</option>
+            <option value="Quang">👤 Thầy Quang</option>
+          </select>
+        </div>
+
+        <select id="classSelect" onchange="onClassSelectChange()" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-lg px-2 py-1 text-xs font-bold focus:outline-none">
+          <option value="KD28">Lớp KD28 (U1)</option>
+          <option value="KD27">Lớp KD27 (U2)</option>
+          <option value="KD26">Lớp KD26 (U4)</option>
+          <option value="KD25">Lớp KD25 (U5)</option>
+          <option value="KD24">Lớp KD24 (U6)</option>
+          <option value="KD23">Lớp KD23 (U7)</option>
+          <option value="KD22">Lớp KD22 (U8)</option>
+          <option value="KD21">Lớp KD21 (U10)</option>
+          <option value="KD13">Lớp KD13 (U16)</option>
+          <option value="KD07">Lớp KD07 (U21)</option>
+          <option value="KD20">Lớp KD20</option>
+        </select>
+      </div>
+
+      <!-- Row 2: Compact Day Pills + Week Toggle -->
+      <div class="flex items-center gap-1">
+        <div id="dateStrip" class="grid grid-cols-4 gap-1 flex-1"></div>
+        <button onclick="toggleWeek()" id="weekToggleBtn" title="Đổi tuần" class="px-2 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--card)] text-xs font-semibold text-[var(--muted-foreground)] shrink-0">
+          ⇄ Tuần
+        </button>
+      </div>
+    </div>
+
+    <!-- Stepper Navigation Bar (Top-positioned for instant switching) -->
+    <div class="bg-[var(--card)] border-b border-[var(--border)] p-1.5 grid grid-cols-4 gap-1">
+      <button onclick="switchTab('step1')" id="tab_step1" class="py-2 rounded-xl text-xs font-bold bg-[var(--primary)] text-[var(--primary-foreground)] transition">
+        1. Lịch dạy
+      </button>
+      <button onclick="switchTab('step2')" id="tab_step2" class="py-2 rounded-xl text-xs font-medium text-[var(--muted-foreground)] hover:bg-[var(--secondary)] transition">
+        2. Điểm danh
+      </button>
+      <button onclick="switchTab('step3')" id="tab_step3" class="py-2 rounded-xl text-xs font-medium text-[var(--muted-foreground)] hover:bg-[var(--secondary)] transition">
+        3. Nhận xét
+      </button>
+      <button onclick="switchTab('step4')" id="tab_step4" class="py-2 rounded-xl text-xs font-medium text-[var(--muted-foreground)] hover:bg-[var(--secondary)] transition">
+        4. Tin nhắn
+      </button>
+    </div>
+
+    <!-- Main Content Area -->
+    <div id="mainView" class="flex-1 p-3 overflow-y-auto space-y-2.5"></div>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastBox" class="fixed bottom-5 left-1/2 -translate-x-1/2 hidden px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold shadow-lg z-50">
+    Đã lưu!
+  </div>
+
+  <script>
+    const WEEKS = [
+      {
+        id: 0,
+        label: "Tuần 19-22/10",
+        days: [
+          { date: "2026-10-19", dmy: "19/10/2026", dow: "T2", fullDow: "Thứ 2", short: "19/10", dayKey: "MON", alerts: [] },
+          { date: "2026-10-20", dmy: "20/10/2026", dow: "T3", fullDow: "Thứ 3", short: "20/10", dayKey: "TUE", alerts: ["TEST KD23", "TEST KD24"] },
+          { date: "2026-10-21", dmy: "21/10/2026", dow: "T4", fullDow: "Thứ 4", short: "21/10", dayKey: "WED", alerts: ["TEST KD23, KD24, KD27"] },
+          { date: "2026-10-22", dmy: "22/10/2026", dow: "T5", fullDow: "Thứ 5", short: "22/10", dayKey: "THU", alerts: ["TEST KD27"] }
+        ]
+      },
+      {
+        id: 1,
+        label: "Tuần 26-29/10",
+        days: [
+          { date: "2026-10-26", dmy: "26/10/2026", dow: "T2", fullDow: "Thứ 2", short: "26/10", dayKey: "MON", alerts: [] },
+          { date: "2026-10-27", dmy: "27/10/2026", dow: "T3", fullDow: "Thứ 3", short: "27/10", dayKey: "TUE", alerts: ["Họp PH KD23, KD24"] },
+          { date: "2026-10-28", dmy: "28/10/2026", dow: "T4", fullDow: "Thứ 4", short: "28/10", dayKey: "WED", alerts: ["Họp PH KD27"] },
+          { date: "2026-10-29", dmy: "29/10/2026", dow: "T5", fullDow: "Thứ 5", short: "29/10", dayKey: "THU", alerts: [] }
+        ]
+      }
+    ];
+
+    const LESSON_CONTENT_PRESETS = {
+      "U1_L06": {
+        unitLabel: "Unit 1",
+        lessonLabel: "Lesson 06",
+        components: [
+          { type: "Song", titles: "I Love Them All, Five Little Elephants, Alphabet Song", vocab: "crawl, hippo, dance, elephant, kangaroo, play, walk, baby, brother, father, mother, sister, tall/short" },
+          { type: "Poem", titles: "Zoo, Friends", vocab: "animals, kangaroo, zebra, zoo, friend, play, run" },
+          { type: "Phonograms/Word Cards", titles: "PCs, PWCs: d, m,", vocab: "" },
+          { type: "Action Activity", titles: "Hop Like a Rabbit", vocab: "crawl, monkey, rabbit, tree, up/down" },
+          { type: "Story", titles: "Mouse in the Barn, Family at the Zoo", vocab: "chair, floor, grass, rock, snake, steps, through, bear, boys, circle/line, family, girls, gorilla, hippopotamus/hippo, lion, over/under, panda" }
+        ]
+      },
+      "U1_L08": {
+        unitLabel: "Unit 1",
+        lessonLabel: "Lesson 8",
+        components: [
+          { type: "Song", titles: "Five Little Elephants, I Love Them All, Alphabet Song", vocab: "climb, dance, elephant, kangaroo, monkey, walk, baby, brother, father, mother, sister, tall/short, sing" },
+          { type: "Poem", titles: "Friends", vocab: "friend, play, run" },
+          { type: "Story", titles: "Mouse in the Barn, Family in the Zoo", vocab: "chair, floor, grass, rock, snake, steps, through, bear, boys, girls, gorilla, hippopotamous/hippo, lion, over/under, panda, zoo" },
+          { type: "Big Book", titles: "One", vocab: "family, house, sleep, one" },
+          { type: "Action Activity", titles: "Hop Like a Rabbit", vocab: "crawl, hop, rabbit, tree, zebra" },
+          { type: "Phonogram", titles: "d, k, m, z", vocab: "" }
+        ]
+      },
+      "U2_DEFAULT": {
+        unitLabel: "Unit 2",
+        lessonLabel: "Lesson 21",
+        components: [
+          { type: "Song", titles: "Up and Down, Two Little Apples, Seven Good Friends", vocab: "up/down, apple, tree, friend, count, 1-10" },
+          { type: "Poem", titles: "Alligator, Umbrella", vocab: "alligator, grass, sky, umbrella, rain" },
+          { type: "Story", titles: "Too Big, Fun Together", vocab: "hat, pants, pocket, shirt, shoes, sweater, too big/little, fun, play" },
+          { type: "Big Book", titles: "Blue, Two", vocab: "blue, two, shoes, balls, birds" },
+          { type: "Action Activity", titles: "Touch Your Toes!", vocab: "arms, ear, eye, feet, hair, hands, head, legs, mouth, nose, stomach, toes, touch" },
+          { type: "Phonogram", titles: "b, g, l, n, u", vocab: "" }
+        ]
+      },
+      "U4_DEFAULT": {
+        unitLabel: "Unit 4",
+        lessonLabel: "Lesson 07",
+        components: [
+          { type: "Song", titles: "Wait and See, My Silly Monkey, Baking a Cake", vocab: "wait, see, silly, monkey, bake, cake, kitchen, oven" },
+          { type: "Poem", titles: "Early in the Morning, Insects", vocab: "early, morning, sun, insects, bee, spider, worm" },
+          { type: "Story", titles: "Mouse's Day, Jonny Bear Goes to School", vocab: "breakfast, lunch, dinner, clock, time, school, teacher, bag" },
+          { type: "Big Book", titles: "Four, Yellow", vocab: "four, yellow, ducks, flowers, bananas" },
+          { type: "Action Activity", titles: "Around the Clock", vocab: "jump, turn around, hop, clap, stop, clock" },
+          { type: "Phonogram", titles: "h, j, q, v, w, y", vocab: "" }
+        ]
+      },
+      "U5_DEFAULT": {
+        unitLabel: "Unit 5",
+        lessonLabel: "Lesson 09",
+        components: [
+          { type: "Song", titles: "Sweet Potatoes, Bus Stop, Do You Know?", vocab: "potatoes, hungry, bus, stop, street, driver, know" },
+          { type: "Poem", titles: "Rain, Sharing", vocab: "rain, wet, umbrella, share, friend, toy" },
+          { type: "Story", titles: "Going to the Grocery Store, Grandpa's Farm", vocab: "grocery store, milk, bread, apples, farm, cow, horse, pig, sheep, chicken" },
+          { type: "Big Book", titles: "Five, Orange", vocab: "five, orange, carrots, pumpkins, oranges" },
+          { type: "Action Activity", titles: "Move Together!", vocab: "march, skip, tiptoe, wave, nod, shake hands" },
+          { type: "Phonogram", titles: "sh, ch, th, wh", vocab: "" }
+        ]
+      },
+      "U6_DEFAULT": {
+        unitLabel: "Unit 6",
+        lessonLabel: "Lesson 22",
+        components: [
+          { type: "Song", titles: "When I Grow Up, Sing a Song, Let's Go!", vocab: "grow up, doctor, firefighter, teacher, pilot, sing, song" },
+          { type: "Poem", titles: "My Shadow, At the Beach", vocab: "shadow, sun, beach, sand, ocean, swim, shell" },
+          { type: "Story", titles: "A Day at the Park, Helping at Home", vocab: "park, slide, swing, bench, clean, sweep, wash, dishes, room" },
+          { type: "Big Book", titles: "Six, Purple", vocab: "six, purple, grapes, plums, hats" },
+          { type: "Action Activity", titles: "Follow the Leader", vocab: "follow, leader, behind, in front of, beside, between" },
+          { type: "Phonogram", titles: "ck, ng, nk, oo", vocab: "" }
+        ]
+      },
+      "U7_DEFAULT": {
+        unitLabel: "Unit 7",
+        lessonLabel: "Lesson 21",
+        components: [
+          { type: "Song", titles: "Days of the Week, Weather Song, Travelling", vocab: "Monday, Tuesday, Wednesday, Thursday, Friday, sunny, rainy, windy, cloudy" },
+          { type: "Poem", titles: "Seasons, The Wind", vocab: "spring, summer, fall, winter, warm, hot, cool, cold, wind, blow" },
+          { type: "Story", titles: "The Lost Puppy, Camping Trip", vocab: "puppy, lost, find, forest, tent, campfire, stars, night, flashlight" },
+          { type: "Big Book", titles: "Seven, Brown & White", vocab: "seven, brown, white, bears, snow, bunnies" },
+          { type: "Action Activity", titles: "Simon Says", vocab: "stretch, bend, reach, squat, balance, freeze" },
+          { type: "Phonogram", titles: "ar, er, ir, or, ur", vocab: "" }
+        ]
+      },
+      "U8_DEFAULT": {
+        unitLabel: "Unit 8",
+        lessonLabel: "Lesson 11",
+        components: [
+          { type: "Song", titles: "Months of the Year, Healthy Food, Our Neighborhood", vocab: "January-December, vegetables, fruit, healthy, strong, hospital, library, bakery" },
+          { type: "Poem", titles: "A Little Seed, Night Time", vocab: "seed, plant, water, sunlight, grow, leaf, flower, moon, stars" },
+          { type: "Story", titles: "Birthday Party, Visit to the Dentist", vocab: "birthday, party, present, candle, wish, dentist, teeth, brush, smile" },
+          { type: "Action Activity", titles: "Step and Turn", vocab: "left, right, straight, corner, cross, turn" },
+          { type: "Phonogram", titles: "ai, ay, ee, ea, oa, ow", vocab: "" }
+        ]
+      },
+      "U10_DEFAULT": {
+        unitLabel: "Unit 10",
+        lessonLabel: "Lesson 03",
+        components: [
+          { type: "Song", titles: "Around the World, Working Together", vocab: "world, country, travel, airplane, boat, team, help, together" },
+          { type: "Poem", titles: "The Ocean, Mountain High", vocab: "ocean, wave, whale, dolphin, shark, mountain, high, climb, peak" },
+          { type: "Story", titles: "The School Play, Treasure Map", vocab: "stage, costume, actor, audience, clap, map, treasure, island, bridge" },
+          { type: "Action Activity", titles: "Act It Out", vocab: "whisper, shout, tiptoe, hurry, carry, pull, push" },
+          { type: "Phonogram", titles: "igh, ie, ew, ue, oi, oy", vocab: "" }
+        ]
+      },
+      "U16_DEFAULT": {
+        unitLabel: "Unit 16",
+        lessonLabel: "Lesson 32 (WR1 / Movers)",
+        components: [
+          { type: "Song", titles: "Unit 16 Review Chant & Movers Speaking", vocab: "adventure, explore, compass, journey" },
+          { type: "Story", titles: "WR1 & Reading Comprehension", vocab: "Main idea, sequence of events, past simple" },
+          { type: "Phonogram", titles: "New Round Up Grammar Focus", vocab: "" }
+        ]
+      },
+      "U21_DEFAULT": {
+        unitLabel: "Unit 21",
+        lessonLabel: "Lesson 24 (Flyer / Reading 2)",
+        components: [
+          { type: "Song", titles: "Cambridge Flyers Speaking & Listening", vocab: "Describing differences, picture story" },
+          { type: "Story", titles: "WR 2 & Reading 2", vocab: "Academic vocabulary, reading inference" },
+          { type: "Phonogram", titles: "New Round Up 2", vocab: "" }
+        ]
+      }
+    };
+
+    const CLASSES_DATA = {
+      "KD28": {
+        code: "KD28", time: "17:30 - 18:10", unitReal: "Unit 1", defaultRoom: "P.301", presetKey: "U1_L08",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "Lesson 05", session: "5/32", presetOverride: "U1_L06" },
+          "2026-10-20": { lesson: "Lesson 06", session: "6/32", presetOverride: "U1_L06" },
+          "2026-10-21": { lesson: "Lesson 07", session: "7/32", presetOverride: "U1_L08" },
+          "2026-10-22": { lesson: "Lesson 8", session: "8/32", presetOverride: "U1_L08" },
+          "2026-10-26": { lesson: "Lesson 09", session: "9/32", presetOverride: "U1_L08" },
+          "2026-10-27": { lesson: "Lesson 10", session: "10/32", presetOverride: "U1_L08" },
+          "2026-10-28": { lesson: "Lesson 11", session: "11/32", presetOverride: "U1_L08" },
+          "2026-10-29": { lesson: "Lesson 12", session: "12/32", presetOverride: "U1_L08" }
+        },
+        students: [
+          { id: "s28_1", name: "Milo" },
+          { id: "s28_2", name: "Kitty" },
+          { id: "s28_3", name: "Subin" },
+          { id: "s28_4", name: "Coca" }
+        ]
+      },
+      "KD25": {
+        code: "KD25", time: "17:30 - 18:50", unitReal: "Unit 5", defaultRoom: "P.201", presetKey: "U5_DEFAULT",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "Lesson 07", session: "7/32" },
+          "2026-10-20": { lesson: "Lesson 08", session: "8/32" },
+          "2026-10-21": { lesson: "Lesson 09", session: "9/32" },
+          "2026-10-22": { lesson: "Phonics (PN)", session: "10/32" },
+          "2026-10-26": { lesson: "Lesson 11", session: "11/32" },
+          "2026-10-27": { lesson: "Lesson 12", session: "12/32" },
+          "2026-10-28": { lesson: "Lesson 13", session: "13/32" },
+          "2026-10-29": { lesson: "Phonics (PN)", session: "14/32" }
+        },
+        students: [
+          { id: "s25_1", name: "Sun" },
+          { id: "s25_2", name: "Hannah" },
+          { id: "s25_3", name: "Kai" },
+          { id: "s25_4", name: "Pudding" },
+          { id: "s25_5", name: "Putin" },
+          { id: "s25_6", name: "Chip" }
+        ]
+      },
+      "KD27": {
+        code: "KD27", time: "19:10 - 20:30", unitReal: "Unit 2", defaultRoom: "P.201", presetKey: "U2_DEFAULT",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "Lesson 21", session: "21/32" },
+          "2026-10-20": { lesson: "Lesson 22", session: "22/32" },
+          "2026-10-21": { lesson: "TEST (Ngày 1)", session: "23/32" },
+          "2026-10-22": { lesson: "TEST (Ngày 2)", session: "24/32" },
+          "2026-10-26": { lesson: "Lesson 23", session: "25/32" },
+          "2026-10-27": { lesson: "Lesson 24", session: "26/32" },
+          "2026-10-28": { lesson: "Lesson 25", session: "27/32" },
+          "2026-10-29": { lesson: "Lesson 26", session: "28/32" }
+        },
+        students: [
+          { id: "s27_1", name: "Daniel" },
+          { id: "s27_2", name: "Sam" },
+          { id: "s27_3", name: "Ken" },
+          { id: "s27_4", name: "Tony" },
+          { id: "s27_5", name: "Lisa" }
+        ]
+      },
+      "KD26": {
+        code: "KD26", time: "19:10 - 20:30", unitReal: "Unit 4", defaultRoom: "P.301", presetKey: "U4_DEFAULT",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "Lesson 05", session: "5/32" },
+          "2026-10-20": { lesson: "Lesson 06", session: "6/32" },
+          "2026-10-21": { lesson: "Lesson 07", session: "7/32" },
+          "2026-10-22": { lesson: "Lesson 08", session: "8/32" },
+          "2026-10-26": { lesson: "Lesson 09", session: "9/32" },
+          "2026-10-27": { lesson: "Lesson 10", session: "10/32" },
+          "2026-10-28": { lesson: "Lesson 11", session: "11/32" },
+          "2026-10-29": { lesson: "Lesson 12", session: "12/32" }
+        },
+        students: [
+          { id: "s26_1", name: "Lucas" },
+          { id: "s26_2", name: "Tom" },
+          { id: "s26_3", name: "Candy" },
+          { id: "s26_4", name: "Jerry" }
+        ]
+      },
+      "KD24": {
+        code: "KD24", time: "19:10 - 20:30", unitReal: "Unit 6", defaultRoom: "P.401", presetKey: "U6_DEFAULT",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "Lesson 21", session: "21/32" },
+          "2026-10-20": { lesson: "Lesson 22", session: "22/32" },
+          "2026-10-21": { lesson: "TEST (Ngày 1)", session: "23/32" },
+          "2026-10-22": { lesson: "TEST (Ngày 2)", session: "24/32" },
+          "2026-10-26": { lesson: "Lesson 23", session: "25/32" },
+          "2026-10-27": { lesson: "Lesson 24", session: "26/32" },
+          "2026-10-28": { lesson: "Lesson 25", session: "27/32" },
+          "2026-10-29": { lesson: "Phonics (PN)", session: "28/32" }
+        },
+        students: [
+          { id: "s24_1", name: "Chuu" },
+          { id: "s24_2", name: "Emma" },
+          { id: "s24_3", name: "Noah" },
+          { id: "s24_4", name: "Olivia" }
+        ]
+      },
+      "KD23": {
+        code: "KD23", time: "17:30 - 18:50", unitReal: "Unit 7", defaultRoom: "P.401", presetKey: "U7_DEFAULT",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "Lesson 20", session: "20/32" },
+          "2026-10-20": { lesson: "Lesson 21", session: "21/32" },
+          "2026-10-21": { lesson: "TEST (Ngày 1)", session: "22/32" },
+          "2026-10-22": { lesson: "TEST (Ngày 2)", session: "23/32" },
+          "2026-10-26": { lesson: "Lesson 22", session: "24/32" },
+          "2026-10-27": { lesson: "Lesson 23", session: "25/32" },
+          "2026-10-28": { lesson: "Lesson 24", session: "26/32" },
+          "2026-10-29": { lesson: "Phonics (PN)", session: "27/32" }
+        },
+        students: [
+          { id: "s23_1", name: "Liam" },
+          { id: "s23_2", name: "Airel" },
+          { id: "s23_3", name: "Mia" },
+          { id: "s23_4", name: "Wind" },
+          { id: "s23_5", name: "Ruby" },
+          { id: "s23_6", name: "Max" }
+        ]
+      },
+      "KD22": {
+        code: "KD22", time: "19:10 - 20:30", unitReal: "Unit 8", defaultRoom: "P.302", presetKey: "U8_DEFAULT",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "Lesson 09", session: "9/32" },
+          "2026-10-20": { lesson: "Lesson 10", session: "10/32" },
+          "2026-10-21": { lesson: "Lesson 11", session: "11/32" },
+          "2026-10-22": { lesson: "Phonics (PN)", session: "12/32" },
+          "2026-10-26": { lesson: "Lesson 13", session: "13/32" },
+          "2026-10-27": { lesson: "Lesson 14", session: "14/32" },
+          "2026-10-28": { lesson: "Lesson 15", session: "15/32" },
+          "2026-10-29": { lesson: "Phonics (PN)", session: "16/32" }
+        },
+        students: [
+          { id: "s22_1", name: "Sophia" },
+          { id: "s22_2", name: "James" },
+          { id: "s22_3", name: "Isabella" },
+          { id: "s22_4", name: "Benjamin" }
+        ]
+      },
+      "KD21": {
+        code: "KD21", time: "17:30 - 18:50", unitReal: "Unit 10", defaultRoom: "P.402", presetKey: "U10_DEFAULT",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "Lesson 01", session: "1/32" },
+          "2026-10-20": { lesson: "Lesson 02", session: "2/32" },
+          "2026-10-21": { lesson: "Lesson 03", session: "3/32" },
+          "2026-10-22": { lesson: "Phonics (PN)", session: "4/32" },
+          "2026-10-26": { lesson: "Lesson 05", session: "5/32" },
+          "2026-10-27": { lesson: "Lesson 06", session: "6/32" },
+          "2026-10-28": { lesson: "Lesson 07", session: "7/32" },
+          "2026-10-29": { lesson: "Phonics (PN)", session: "8/32" }
+        },
+        students: [
+          { id: "s21_1", name: "Bella" },
+          { id: "s21_2", name: "Charlie" },
+          { id: "s21_3", name: "Daisy" },
+          { id: "s21_4", name: "Ethan" },
+          { id: "s21_5", name: "Fiona" }
+        ]
+      },
+      "KD13": {
+        code: "KD13", time: "17:30 - 18:50", unitReal: "Unit 16", defaultRoom: "Nhà bên - P.To", presetKey: "U16_DEFAULT",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "Movers", session: "31/32" },
+          "2026-10-20": { lesson: "WR1", session: "32/32" },
+          "2026-10-21": { lesson: "Unit 17 - L1", session: "1/32" },
+          "2026-10-22": { lesson: "Unit 17 - L2", session: "2/32" },
+          "2026-10-26": { lesson: "Movers", session: "3/32" },
+          "2026-10-27": { lesson: "WR1", session: "4/32" },
+          "2026-10-28": { lesson: "Read", session: "5/32" },
+          "2026-10-29": { lesson: "New Round Up", session: "6/32" }
+        },
+        students: [
+          { id: "s13_1", name: "Alice" },
+          { id: "s13_2", name: "Apple" },
+          { id: "s13_3", name: "Maika" },
+          { id: "s13_4", name: "Sun" },
+          { id: "s13_5", name: "Tom" }
+        ]
+      },
+      "KD07": {
+        code: "KD07", time: "17:30 - 18:50", unitReal: "Unit 21", defaultRoom: "Nhà bên - P.Bé", presetKey: "U21_DEFAULT",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "WR 2", session: "22/32" },
+          "2026-10-20": { lesson: "Reading 2", session: "23/32" },
+          "2026-10-21": { lesson: "Flyer", session: "24/32" },
+          "2026-10-22": { lesson: "New Round Up 2", session: "25/32" },
+          "2026-10-26": { lesson: "WR 2", session: "26/32" },
+          "2026-10-27": { lesson: "Reading 2", session: "27/32" },
+          "2026-10-28": { lesson: "Flyer", session: "28/32" },
+          "2026-10-29": { lesson: "New Round Up 2", session: "29/32" }
+        },
+        students: [
+          { id: "s07_1", name: "Anna" },
+          { id: "s07_2", name: "Ben" },
+          { id: "s07_3", name: "Cindy" },
+          { id: "s07_4", name: "David" }
+        ]
+      },
+      "KD20": {
+        code: "KD20", time: "17:30 - 18:50", unitReal: "Unit 6", defaultRoom: "P.302", presetKey: "U6_DEFAULT",
+        lessonsByDate: {
+          "2026-10-19": { lesson: "Ôn tập", session: "-" },
+          "2026-10-20": { lesson: "Ôn tập", session: "-" },
+          "2026-10-21": { lesson: "Ôn tập", session: "-" },
+          "2026-10-22": { lesson: "Ôn tập", session: "-" },
+          "2026-10-26": { lesson: "Ôn tập", session: "-" },
+          "2026-10-27": { lesson: "Ôn tập", session: "-" },
+          "2026-10-28": { lesson: "Ôn tập", session: "-" },
+          "2026-10-29": { lesson: "Ôn tập", session: "-" }
+        },
+        students: [
+          { id: "s20_1", name: "Minh Khôi" },
+          { id: "s20_2", name: "Bảo Ngọc" },
+          { id: "s20_3", name: "Gia Huy" }
+        ]
+      }
+    };
+
+    const DAILY_ASSIGNMENTS = {
+      "MON": [
+        { classCode: "KD13", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Huyền bé", slot2Text: "18:15-18:50: Mak + Khánh", room: "Nhà bên - P.To" },
+        { classCode: "KD07", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Mak + Khánh", slot2Text: "18:15-18:50: Huyền bé rep", room: "Nhà bên - P.Bé" },
+        { classCode: "KD20", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Chị Nhung", slot2Text: "18:15-18:50: Hường", room: "P.302" },
+        { classCode: "KD21", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Tú Rep", slot2Text: "18:15-18:50: Kate + Tú", room: "P.402" },
+        { classCode: "KD23", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Kate + Hường", slot2Text: "18:15-18:50: Minh Anh Rep", room: "P.401" },
+        { classCode: "KD25", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Minh Anh Rep", slot2Text: "18:15-18:50: Eduard + Mai", room: "P.201" },
+        { classCode: "KD28", ca: 1, time: "17:30 - 18:10", slot1Text: "17:30-18:10: Eduard + Mai TA", slot2Text: "18:15-18:50: Nghỉ", room: "P.301" },
+        { classCode: "KD27", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Minh Anh Rep", slot2Text: "19:55-20:30: Eduard + Tú", room: "P.201" },
+        { classCode: "KD26", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Eduard + Tú", slot2Text: "19:55-20:30: Phương Rep", room: "P.301" },
+        { classCode: "KD24", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Mak + Phương", slot2Text: "19:55-20:30: Minh Anh Rep", room: "P.401" },
+        { classCode: "KD22", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Kate + Khánh TA", slot2Text: "19:55-20:30: Huyền bé rep", room: "P.302" }
+      ],
+      "TUE": [
+        { classCode: "KD13", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Huyền bé", slot2Text: "18:15-18:50: Mak + Khánh", room: "Nhà bên - P.To" },
+        { classCode: "KD07", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Mak + Khánh", slot2Text: "18:15-18:50: Huyền bé rep", room: "Nhà bên - P.Bé" },
+        { classCode: "KD20", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Chị Nhung (Hường)", slot2Text: "18:15-18:50: Hường", room: "P.302" },
+        { classCode: "KD21", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Tú Rep", slot2Text: "18:15-18:50: Kate + Tú (Quang)", room: "P.402" },
+        { classCode: "KD23", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Kate + Hường (Quang)", slot2Text: "18:15-18:50: Minh Anh Rep", room: "P.401" },
+        { classCode: "KD25", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Minh Anh Rep", slot2Text: "18:15-18:50: Eduard + Mai", room: "P.201" },
+        { classCode: "KD28", ca: 1, time: "17:30 - 18:10", slot1Text: "17:30-18:10: Eduard + Mai TA", slot2Text: "18:15-18:50: Nghỉ", room: "P.301" },
+        { classCode: "KD27", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Minh Anh Rep", slot2Text: "19:55-20:30: Eduard + Tú", room: "P.201" },
+        { classCode: "KD26", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Eduard + Tú", slot2Text: "19:55-20:30: Phương Rep", room: "P.301" },
+        { classCode: "KD24", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Mak + Phương (Quang)", slot2Text: "19:55-20:30: Minh Anh Rep", room: "P.401" },
+        { classCode: "KD22", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Kate + Khánh TA", slot2Text: "19:55-20:30: Huyền bé rep (Quang)", room: "P.302" }
+      ],
+      "WED": [
+        { classCode: "KD13", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Huyền bé", slot2Text: "18:15-18:50: Phương + Quang", room: "Nhà bên - P.To" },
+        { classCode: "KD07", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Khánh", slot2Text: "18:15-18:50: Huyền bé rep", room: "Nhà bên - P.Bé" },
+        { classCode: "KD20", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Mak + Mai", slot2Text: "18:15-18:50: Mak + Mai", room: "P.302" },
+        { classCode: "KD21", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Phương Rep", slot2Text: "18:15-18:50: Kate + Tú", room: "P.402" },
+        { classCode: "KD23", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Kate + Tú", slot2Text: "18:15-18:50: Minh Anh Rep", room: "P.401" },
+        { classCode: "KD25", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Minh Anh Rep", slot2Text: "18:15-18:50: Eduard + Khánh", room: "P.201" },
+        { classCode: "KD28", ca: 1, time: "17:30 - 18:10", slot1Text: "17:30-18:10: Eduard + Quang TA", slot2Text: "18:15-18:50: Nghỉ", room: "P.301" },
+        { classCode: "KD27", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Minh Anh Rep", slot2Text: "19:55-20:30: Eduard + Tú", room: "P.201" },
+        { classCode: "KD26", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Eduard + Tú", slot2Text: "19:55-20:30: Phương Rep", room: "P.301" },
+        { classCode: "KD24", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Mak + Phương", slot2Text: "19:55-20:30: Minh Anh Rep", room: "P.401" },
+        { classCode: "KD22", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Kate + Khánh TA", slot2Text: "19:55-20:30: Huyền bé rep", room: "P.302" }
+      ],
+      "THU": [
+        { classCode: "KD13", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Huyền bé", slot2Text: "18:15-18:50: Phương", room: "Nhà bên - P.To" },
+        { classCode: "KD07", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Khánh", slot2Text: "18:15-18:50: Huyền bé rep", room: "Nhà bên - P.Bé" },
+        { classCode: "KD20", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Mak + Chị Nhung", slot2Text: "18:15-18:50: Mak + Hường", room: "P.302" },
+        { classCode: "KD21", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Phương Rep", slot2Text: "18:15-18:50: Kate + Tú", room: "P.402" },
+        { classCode: "KD23", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Kate + Tú", slot2Text: "18:15-18:50: Minh Anh Rep", room: "P.401" },
+        { classCode: "KD25", ca: 1, time: "17:30 - 18:50", slot1Text: "17:30-18:10: Minh Anh Rep", slot2Text: "18:15-18:50: Eduard + Khánh", room: "P.201" },
+        { classCode: "KD28", ca: 1, time: "17:30 - 18:10", slot1Text: "17:30-18:10: Eduard + Hường TA", slot2Text: "18:15-18:50: Nghỉ", room: "P.301" },
+        { classCode: "KD27", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Minh Anh Rep", slot2Text: "19:55-20:30: Eduard + Tú", room: "P.201" },
+        { classCode: "KD26", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Eduard + Tú", slot2Text: "19:55-20:30: Phương Rep", room: "P.301" },
+        { classCode: "KD24", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Mak + Phương", slot2Text: "19:55-20:30: Minh Anh Rep", room: "P.401" },
+        { classCode: "KD22", ca: 2, time: "19:10 - 20:30", slot1Text: "19:10-19:50: Kate + Khánh TA", slot2Text: "19:55-20:30: Huyền bé rep", room: "P.302" }
+      ]
+    };
+
+    const FEEDBACK_CATEGORIES = [
+      {
+        id: "attitude_praise",
+        shortTitle: "🌟 Thái độ",
+        fullTitle: "🌟 Khen về thái độ học tập",
+        groupType: "praise",
+        items: [
+          "Con vào lớp đúng giờ, chuẩn bị bài đầy đủ.",
+          "Con học tập rất nghiêm túc và có tinh thần hợp tác tốt.",
+          "Con luôn giữ thái độ lễ phép, biết lắng nghe thầy cô.",
+          "Con rất tự tin khi tham gia các hoạt động trên lớp.",
+          "Con tích cực tương tác với thầy cô và các bạn.",
+          "Con mạnh dạn chia sẻ ý kiến của mình trong giờ học.",
+          "Con có tinh thần học hỏi và luôn cố gắng hoàn thành nhiệm vụ.",
+          "Con rất chăm chỉ, tập trung xuyên suốt buổi học.",
+          "Con có ý thức học tập tốt và chủ động tham gia các hoạt động.",
+          "Con luôn giữ năng lượng tích cực trong suốt tiết học."
+        ]
+      },
+      {
+        id: "knowledge_praise",
+        shortTitle: "📚 Kiến thức",
+        fullTitle: "📚 Khen về kiến thức",
+        groupType: "praise",
+        items: [
+          "Con ghi nhớ từ vựng rất tốt.",
+          "Con sử dụng mẫu câu linh hoạt và đúng ngữ cảnh.",
+          "Con hiểu bài nhanh và vận dụng kiến thức tốt.",
+          "Con nghe hiểu nội dung bài học rất tốt.",
+          "Con phản xạ tiếng Anh nhanh và tự nhiên.",
+          "Con trả lời câu hỏi đầy đủ, rõ ý.",
+          "Con có vốn từ phong phú và biết áp dụng vào giao tiếp.",
+          "Con đọc lưu loát, ngắt nghỉ đúng.",
+          "Con phát âm ngày càng rõ và chuẩn hơn.",
+          "Con tiến bộ rõ rệt so với các buổi học trước."
+        ]
+      },
+      {
+        id: "speaking_praise",
+        shortTitle: "🎤 Speaking",
+        fullTitle: "🎤 Khen về kỹ năng Speaking",
+        groupType: "praise",
+        items: [
+          "Con nói to, rõ ràng và tự tin.",
+          "Con diễn đạt trọn vẹn câu khi trả lời.",
+          "Con biết sử dụng ngữ điệu tự nhiên.",
+          "Con phản xạ trả lời nhanh khi được hỏi.",
+          "Con mạnh dạn giao tiếp bằng tiếng Anh trong lớp.",
+          "Con chủ động đặt câu hỏi và trao đổi với thầy cô."
+        ]
+      },
+      {
+        id: "reading_praise",
+        shortTitle: "📖 Reading",
+        fullTitle: "📖 Khen về Reading",
+        groupType: "praise",
+        items: [
+          "Con đọc lưu loát và rõ ràng.",
+          "Con nhận diện từ mới rất nhanh.",
+          "Con biết tự sửa khi đọc sai.",
+          "Con đọc đúng ngữ điệu và tốc độ phù hợp."
+        ]
+      },
+      {
+        id: "gentle_feedback",
+        shortTitle: "🌱 Góp ý nhẹ",
+        fullTitle: "🌱 Góp ý nhẹ nhàng",
+        groupType: "feedback",
+        items: [
+          "Con cần tập trung hơn trong một số thời điểm của tiết học.",
+          "Con nên mạnh dạn trả lời câu hỏi hơn.",
+          "Con còn hơi rụt rè khi phát biểu.",
+          "Con cần nói to và rõ hơn để thầy cô dễ nghe.",
+          "Con cần luyện phát âm thêm một số từ mới.",
+          "Con cần chú ý nghe hướng dẫn trước khi trả lời.",
+          "Con đôi lúc còn mất tập trung khi bạn khác đang phát biểu.",
+          "Con cần chủ động hơn khi tham gia các hoạt động.",
+          "Con nên hoàn thành câu trả lời đầy đủ hơn.",
+          "Con cần luyện phản xạ trả lời nhanh hơn."
+        ]
+      },
+      {
+        id: "pronunciation_feedback",
+        shortTitle: "🗣️ Phát âm",
+        fullTitle: "🗣️ Góp ý về phát âm",
+        groupType: "feedback",
+        items: [
+          "Con còn nhầm lẫn giữa một số âm, cần luyện nghe và đọc thêm.",
+          "Con cần chú ý phát âm cuối của từ.",
+          "Con cần luyện thêm trọng âm của từ.",
+          "Con phát âm khá tốt, tuy nhiên vẫn cần luyện thêm một số từ mới trong bài.",
+          "Con nên nghe và đọc theo video để cải thiện phát âm."
+        ]
+      },
+      {
+        id: "attitude_feedback",
+        shortTitle: "👏 Thái độ GY",
+        fullTitle: "👏 Góp ý về thái độ",
+        groupType: "feedback",
+        items: [
+          "Cô mong con tự tin hơn khi tham gia phát biểu.",
+          "Cô mong con giữ sự tập trung xuyên suốt buổi học.",
+          "Con cần hạn chế nói chuyện riêng trong giờ học.",
+          "Con cần chủ động giơ tay khi biết câu trả lời.",
+          "Cô tin rằng nếu con cố gắng thêm một chút, con sẽ tiến bộ rất nhanh."
+        ]
+      },
+      {
+        id: "parent_note",
+        shortTitle: "🏡 Phụ huynh",
+        fullTitle: "🏡 Nhận xét dành cho phụ huynh",
+        groupType: "closing",
+        items: [
+          "Bố mẹ vui lòng dành khoảng 10–15 phút mỗi ngày cho con nghe lại bài học.",
+          "Bố mẹ hãy khuyến khích con đọc theo video để tăng khả năng ghi nhớ.",
+          "Bố mẹ có thể cùng con luyện lại từ vựng và mẫu câu của bài.",
+          "Bố mẹ hãy động viên con sử dụng tiếng Anh trong những tình huống đơn giản hằng ngày.",
+          "Việc ôn tập đều đặn mỗi ngày sẽ giúp con tiến bộ nhanh hơn.",
+          "Mong bố mẹ tiếp tục đồng hành và động viên con trong quá trình học tập."
+        ]
+      },
+      {
+        id: "closing_note",
+        shortTitle: "💕 Kết thúc",
+        fullTitle: "💕 Kết thúc nhận xét",
+        groupType: "closing",
+        items: [
+          "Cô rất vui vì sự cố gắng của con trong buổi học hôm nay.",
+          "Chúc con luôn chăm ngoan và học tập thật tốt nhé!",
+          "Cô tin rằng con sẽ ngày càng tiến bộ hơn.",
+          "Mong gặp lại con ở buổi học tiếp theo với thật nhiều năng lượng.",
+          "Chúc con và gia đình có một cuối tuần thật vui vẻ và nhiều sức khỏe.",
+          "Cảm ơn bố mẹ đã luôn đồng hành cùng con trong việc học tiếng Anh.",
+          "Hẹn gặp con ở buổi học tiếp theo nhé! 😊"
+        ]
+      }
+    ];
+
+    let currentWeekIdx = 0;
+    let currentDayIdx = 3; // Thu 22/10
+    let currentTab = "step1";
+    let selectedTeacher = "ALL";
+    let activeClassCode = "KD28";
+
+    const attendanceState = {};
+    const studentNoteState = {};
+    const openNoteInputMap = {};
+    let teacherPronoun = "Cô";
+    let studentTarget = "Con"; // "Con" | "Các con" | "Con (Tên bé)"
+    let includeGreetingLine = true;
+    let selectedPresetMode = "AUTO";
+    let activeFeedbackCatId = "attitude_praise";
+    let feedbackFormatMode = "bullet"; // "paragraph" | "bullet" | "grouped"
+    // Pre-select a balanced default set so teacher sees how it works immediately
+    let selectedCriteriaMap = {
+      "attitude_praise_0": true,
+      "knowledge_praise_0": true,
+      "parent_note_0": true,
+      "closing_note_6": true
+    };
+    let customCommentText = "";
+
+    function getSelectedDayObj() {
+      return WEEKS[currentWeekIdx].days[currentDayIdx];
+    }
+
+    function showToast(msg) {
+      const box = document.getElementById("toastBox");
+      box.textContent = msg;
+      box.classList.remove("hidden");
+      setTimeout(() => box.classList.add("hidden"), 2200);
+    }
+
+    function toggleWeek() {
+      currentWeekIdx = currentWeekIdx === 0 ? 1 : 0;
+      showToast(`Đang xem: ${WEEKS[currentWeekIdx].label}`);
+      renderDateStrip();
+      renderMainView();
+    }
+
+    function selectDay(dIdx) {
+      currentDayIdx = dIdx;
+      renderDateStrip();
+      renderMainView();
+    }
+
+    function onFilterChange() {
+      selectedTeacher = document.getElementById("teacherSelect").value;
+      renderMainView();
+    }
+
+    function onClassSelectChange() {
+      activeClassCode = document.getElementById("classSelect").value;
+      renderMainView();
+    }
+
+    function chooseClassAndGoStep(classCode, stepName) {
+      activeClassCode = classCode;
+      document.getElementById("classSelect").value = classCode;
+      switchTab(stepName);
+    }
+
+    function switchTab(tabName) {
+      currentTab = tabName;
+      ["step1", "step2", "step3", "step4"].forEach(t => {
+        const el = document.getElementById("tab_" + t);
+        if (t === tabName) {
+          el.className = "py-2 rounded-xl text-xs font-bold bg-[var(--primary)] text-[var(--primary-foreground)] transition";
+        } else {
+          el.className = "py-2 rounded-xl text-xs font-medium text-[var(--muted-foreground)] hover:bg-[var(--secondary)] transition";
+        }
+      });
+      renderMainView();
+    }
+
+    function renderDateStrip() {
+      const strip = document.getElementById("dateStrip");
+      const days = WEEKS[currentWeekIdx].days;
+      strip.innerHTML = days.map((d, idx) => {
+        const isActive = idx === currentDayIdx;
+        return `
+          <button onclick="selectDay(${idx})" class="py-1.5 px-1 rounded-lg border text-center transition ${
+            isActive
+              ? "bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)] font-bold"
+              : "bg-[var(--card)] text-[var(--foreground)] border-[var(--border)] text-[var(--muted-foreground)]"
+          }">
+            <div class="text-xs">${d.dow} (${d.short})</div>
+          </button>
+        `;
+      }).join("");
+    }
+
+    function matchesTeacher(item, teacher) {
+      if (teacher === "ALL") return true;
+      const combined = `${item.slot1Text} ${item.slot2Text}`.toLowerCase();
+      return combined.includes(teacher.toLowerCase());
+    }
+
+    function buildGoogleCalUrl(dayObj, item, clsInfo, lessonInfo) {
+      const dateCompact = dayObj.date.replace(/-/g, "");
+      const startH = item.ca === 1 ? "173000" : "191000";
+      const endH = item.ca === 1 ? "185000" : "203000";
+      const title = encodeURIComponent(`[GrapeSEED] Lớp ${item.classCode} (${clsInfo.unitReal} - ${lessonInfo.lesson}) - ${item.room}`);
+      const details = encodeURIComponent(`${item.slot1Text}\n${item.slot2Text}`);
+      const location = encodeURIComponent(`GrapeSEED Kim Đồng - ${item.room}`);
+      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dateCompact}T${startH}/${dateCompact}T${endH}&details=${details}&location=${location}`;
+    }
+
+    function downloadWeeklyICS() {
+      const week = WEEKS[currentWeekIdx];
+      const teacherLabel = selectedTeacher === "ALL" ? "TatCaGV" : selectedTeacher.replace(/\s+/g, "");
+      let icsLines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//GrapeSEED Kim Dong//Teacher Schedule 2026//VI",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH"
+      ];
+
+      let count = 0;
+      week.days.forEach(d => {
+        const list = (DAILY_ASSIGNMENTS[d.dayKey] || []).filter(item => matchesTeacher(item, selectedTeacher));
+        list.forEach(item => {
+          const clsInfo = CLASSES_DATA[item.classCode] || {};
+          const lessonInfo = (clsInfo.lessonsByDate && clsInfo.lessonsByDate[d.date]) || { lesson: "Bài học", session: "-" };
+          const dateCompact = d.date.replace(/-/g, "");
+          const startH = item.ca === 1 ? "173000" : "191000";
+          const endH = item.ca === 1 ? "185000" : "203000";
+
+          icsLines.push(
+            "BEGIN:VEVENT",
+            `UID:gs-${dateCompact}-${item.classCode}@grapeseed-kimdong`,
+            `DTSTAMP:${dateCompact}T090000Z`,
+            `DTSTART;TZID=Asia/Ho_Chi_Minh:${dateCompact}T${startH}`,
+            `DTEND;TZID=Asia/Ho_Chi_Minh:${dateCompact}T${endH}`,
+            `SUMMARY:[GrapeSEED] Lớp ${item.classCode} (${clsInfo.unitReal} - ${lessonInfo.lesson})`,
+            `LOCATION:GrapeSEED Kim Đồng - ${item.room}`,
+            `DESCRIPTION:${item.slot1Text}\\n${item.slot2Text}`,
+            "BEGIN:VALARM",
+            "TRIGGER:-PT15M",
+            "ACTION:DISPLAY",
+            "DESCRIPTION:Nhắc lịch dạy GrapeSEED",
+            "END:VALARM",
+            "END:VEVENT"
+          );
+          count++;
+        });
+      });
+
+      icsLines.push("END:VCALENDAR");
+      const blob = new Blob([icsLines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Lich_GrapeSEED_${teacherLabel}.ics`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast(`📲 Đã tải ${count} buổi dạy vào Calendar (.ics)!`);
+    }
+
+    // ==========================================
+    // STEP 1: MINIMALIST SCHEDULE
+    // ==========================================
+    function renderStep1Schedule() {
+      const dayObj = getSelectedDayObj();
+      const filtered = (DAILY_ASSIGNMENTS[dayObj.dayKey] || []).filter(item => matchesTeacher(item, selectedTeacher));
+
+      let html = `
+        <!-- Single compact bar for Calendar Sync -->
+        <div class="p-2.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] flex items-center justify-between gap-2">
+          <div class="text-xs">
+            <span class="font-bold text-[var(--foreground)]">${dayObj.fullDow}, ${dayObj.dmy}</span>
+            <span class="text-[var(--muted-foreground)]"> • ${filtered.length} lớp</span>
+          </div>
+          <button onclick="downloadWeeklyICS()" class="px-2.5 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-bold shrink-0">
+            📲 Lưu Lịch Tuần (.ics)
+          </button>
+        </div>
+      `;
+
+      if (dayObj.alerts && dayObj.alerts.length > 0) {
+        html += `
+          <div class="px-3 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-xs font-semibold text-rose-600 dark:text-rose-400">
+            🔔 Lưu ý: ${dayObj.alerts.join(" • ")}
+          </div>
+        `;
+      }
+
+      html += filtered.map(item => {
+        const clsInfo = CLASSES_DATA[item.classCode] || {};
+        const lessonInfo = (clsInfo.lessonsByDate && clsInfo.lessonsByDate[dayObj.date]) || { lesson: "Bài học", session: "-" };
+        const gcalUrl = buildGoogleCalUrl(dayObj, item, clsInfo, lessonInfo);
+        const isCurrent = item.classCode === activeClassCode;
+
+        return `
+          <div class="p-3 rounded-xl bg-[var(--card)] border ${isCurrent ? 'border-[var(--primary)]' : 'border-[var(--border)]'} shadow-sm">
+            <!-- Essential Row Only -->
+            <div class="flex items-center justify-between gap-2">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="px-2 py-0.5 rounded-md bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-bold">${item.classCode}</span>
+                  <span class="text-xs font-bold text-[var(--foreground)]">${clsInfo.unitReal} — ${lessonInfo.lesson}</span>
+                </div>
+                <div class="text-xs text-[var(--muted-foreground)] mt-1">
+                  ⏰ ${item.time} • 📍 ${item.room}
+                </div>
+              </div>
+
+              <button onclick="chooseClassAndGoStep('${item.classCode}', 'step2')" class="px-3 py-2 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-bold shrink-0">
+                Vào lớp ➔
+              </button>
+            </div>
+
+            <!-- Collapsible Details ("Ấn xem thêm để hiện chi tiết") -->
+            <details class="mt-2 pt-2 border-t border-[var(--border)] text-xs">
+              <summary class="cursor-pointer text-[var(--muted-foreground)] hover:text-[var(--foreground)] font-medium flex items-center justify-between">
+                <span>▾ Xem chi tiết giáo viên & lưu Google Calendar</span>
+                <span>Buổi ${lessonInfo.session}</span>
+              </summary>
+              <div class="mt-2 space-y-1.5 bg-[var(--secondary)] p-2.5 rounded-lg">
+                <div>👩‍🏫 <b>Chặng 1:</b> ${item.slot1Text}</div>
+                <div>👩‍🏫 <b>Chặng 2:</b> ${item.slot2Text}</div>
+                <div class="pt-1 flex items-center justify-between border-t border-[var(--border)]">
+                  <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 font-semibold hover:underline">
+                    + Thêm buổi này vào Google Calendar
+                  </a>
+                  <button onclick="chooseClassAndGoStep('${item.classCode}', 'step3')" class="text-[var(--foreground)] font-semibold hover:underline">
+                    Viết nhận xét luôn ➔
+                  </button>
+                </div>
+              </div>
+            </details>
+          </div>
+        `;
+      }).join("");
+
+      return html;
+    }
+
+    // ==========================================
+    // STEP 2: ULTRA-FAST ATTENDANCE
+    // ==========================================
+    function setStudentAttendance(studentId, status) {
+      const dayObj = getSelectedDayObj();
+      attendanceState[`${dayObj.date}_${activeClassCode}_${studentId}`] = status;
+      renderMainView();
+    }
+
+    function toggleNoteInput(studentId) {
+      openNoteInputMap[studentId] = !openNoteInputMap[studentId];
+      renderMainView();
+    }
+
+    function updateStudentNote(studentId, val) {
+      const dayObj = getSelectedDayObj();
+      studentNoteState[`${dayObj.date}_${activeClassCode}_${studentId}`] = val;
+    }
+
+    function renderStep2Attendance() {
+      const dayObj = getSelectedDayObj();
+      const cls = CLASSES_DATA[activeClassCode] || CLASSES_DATA["KD28"];
+      const lessonInfo = (cls.lessonsByDate && cls.lessonsByDate[dayObj.date]) || { lesson: "Lesson 8", session: "8/32" };
+
+      let presentCount = 0, absentOrLate = 0;
+      cls.students.forEach(st => {
+        const stStatus = attendanceState[`${dayObj.date}_${cls.code}_${st.id}`] || "present";
+        if (stStatus === "present") presentCount++;
+        else absentOrLate++;
+      });
+
+      return `
+        <!-- Minimalist Header -->
+        <div class="p-2.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] flex items-center justify-between">
+          <div class="text-xs">
+            <span class="font-bold text-[var(--foreground)]">Lớp ${cls.code} (${cls.unitReal} - ${lessonInfo.lesson})</span>
+            <span class="text-[var(--muted-foreground)]"> • Có mặt: <b>${presentCount}/${cls.students.length}</b></span>
+          </div>
+          <span class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">Mặc định: Có mặt</span>
+        </div>
+
+        <!-- Compact 1-line Student List -->
+        <div class="space-y-1.5">
+          ${cls.students.map((st, idx) => {
+            const key = `${dayObj.date}_${cls.code}_${st.id}`;
+            const stStatus = attendanceState[key] || "present";
+            const savedNote = studentNoteState[key] || "";
+            const isNoteOpen = !!openNoteInputMap[st.id] || savedNote.length > 0;
+
+            return `
+              <div class="p-2.5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
+                <div class="flex items-center justify-between gap-1.5">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-[var(--foreground)]">${idx + 1}. ${st.name}</span>
+                    <button onclick="toggleNoteInput('${st.id}')" title="Ghi chú riêng" class="text-xs px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
+                      ${savedNote ? "📝 Có ghi chú" : "+ Ghi chú"}
+                    </button>
+                  </div>
+
+                  <div class="flex items-center gap-1 shrink-0">
+                    <button onclick="setStudentAttendance('${st.id}', 'present')" class="px-2.5 py-1 rounded-lg text-xs font-bold border transition ${
+                      stStatus === "present" ? "bg-emerald-600 text-white border-emerald-600" : "bg-[var(--secondary)] text-[var(--muted-foreground)] border-[var(--border)]"
+                    }">Có mặt</button>
+                    <button onclick="setStudentAttendance('${st.id}', 'late')" class="px-2 py-1 rounded-lg text-xs font-bold border transition ${
+                      stStatus === "late" ? "bg-amber-500 text-white border-amber-500" : "bg-[var(--secondary)] text-[var(--muted-foreground)] border-[var(--border)]"
+                    }">Muộn</button>
+                    <button onclick="setStudentAttendance('${st.id}', 'absent')" class="px-2 py-1 rounded-lg text-xs font-bold border transition ${
+                      stStatus === "absent" ? "bg-rose-600 text-white border-rose-600" : "bg-[var(--secondary)] text-[var(--muted-foreground)] border-[var(--border)]"
+                    }">Vắng</button>
+                  </div>
+                </div>
+
+                ${isNoteOpen ? `
+                  <input
+                    type="text"
+                    value="${savedNote}"
+                    oninput="updateStudentNote('${st.id}', this.value)"
+                    placeholder="Ghi chú cho ${st.name}..."
+                    class="mt-2 w-full bg-[var(--secondary)] text-[var(--foreground)] border border-[var(--border)] rounded-lg px-2.5 py-1 text-xs focus:outline-none"
+                  />
+                ` : ""}
+              </div>
+            `;
+          }).join("")}
+        </div>
+
+        <button onclick="switchTab('step3')" class="w-full py-3 px-4 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-bold shadow-sm hover:opacity-90 transition">
+          Xong Điểm danh ➔ Viết Nhận Xét (Bước 3)
+        </button>
+      `;
+    }
+
+    // ==========================================
+    // STEP 3: MINIMALIST COMMENT (COLLAPSED LESSON DETAILS)
+    // ==========================================
+    function getActiveLessonContent() {
+      const dayObj = getSelectedDayObj();
+      const cls = CLASSES_DATA[activeClassCode] || CLASSES_DATA["KD28"];
+      const lessonInfo = (cls.lessonsByDate && cls.lessonsByDate[dayObj.date]) || { lesson: "Lesson 8", session: "8/32" };
+
+      if (selectedPresetMode === "U1_L06") return LESSON_CONTENT_PRESETS["U1_L06"];
+      if (selectedPresetMode === "U1_L08") return LESSON_CONTENT_PRESETS["U1_L08"];
+
+      const key = lessonInfo.presetOverride || cls.presetKey || "U1_L08";
+      const base = LESSON_CONTENT_PRESETS[key] || LESSON_CONTENT_PRESETS["U1_L08"];
+      return {
+        unitLabel: cls.unitReal,
+        lessonLabel: lessonInfo.lesson,
+        components: base.components
+      };
+    }
+
+    function adaptPronoun(sentence) {
+      let s = sentence;
+      if (teacherPronoun === "Thầy") {
+        s = s.replace(/^Cô /g, "Thầy ").replace(/ của cô/gi, " của thầy");
+      }
+      if (studentTarget === "Các con") {
+        s = s
+          .replace(/^Con /g, "Các con ")
+          .replace(/ con /g, " các con ")
+          .replace(/ con\./g, " các con.")
+          .replace(/ con,/g, " các con,");
+      } else if (studentTarget !== "Con") {
+        s = s.replace(/^Con /g, `Con (${studentTarget}) `);
+      }
+      return s;
+    }
+
+    function setStudentTarget(val) {
+      studentTarget = val;
+      if (Object.keys(selectedCriteriaMap).length > 0) {
+        rebuildCommentFromCriteria();
+      }
+      renderMainView();
+    }
+
+    function rebuildCommentFromCriteria() {
+      if (feedbackFormatMode === "grouped") {
+        let blocks = [];
+        FEEDBACK_CATEGORIES.forEach(cat => {
+          let chosen = [];
+          cat.items.forEach((item, idx) => {
+            if (selectedCriteriaMap[`${cat.id}_${idx}`]) {
+              chosen.push(`* ${adaptPronoun(item)}`);
+            }
+          });
+          if (chosen.length > 0) {
+            blocks.push(`${cat.fullTitle}\n${chosen.join("\n")}`);
+          }
+        });
+        customCommentText = blocks.join("\n\n");
+      } else if (feedbackFormatMode === "bullet") {
+        let lines = [];
+        FEEDBACK_CATEGORIES.forEach(cat => {
+          cat.items.forEach((item, idx) => {
+            if (selectedCriteriaMap[`${cat.id}_${idx}`]) {
+              lines.push(`• ${adaptPronoun(item)}`);
+            }
+          });
+        });
+        customCommentText = lines.join("\n");
+      } else {
+        // paragraph mode
+        let sentences = [];
+        FEEDBACK_CATEGORIES.forEach(cat => {
+          cat.items.forEach((item, idx) => {
+            if (selectedCriteriaMap[`${cat.id}_${idx}`]) {
+              sentences.push(adaptPronoun(item));
+            }
+          });
+        });
+        customCommentText = sentences.join(" ");
+      }
+    }
+
+    function toggleCriterion(catId, idx) {
+      const key = `${catId}_${idx}`;
+      if (selectedCriteriaMap[key]) {
+        delete selectedCriteriaMap[key];
+      } else {
+        selectedCriteriaMap[key] = true;
+      }
+      rebuildCommentFromCriteria();
+      renderMainView();
+    }
+
+    function selectFeedbackCategory(catId) {
+      activeFeedbackCatId = catId;
+      renderMainView();
+    }
+
+    function setFeedbackFormatMode(mode) {
+      feedbackFormatMode = mode;
+      rebuildCommentFromCriteria();
+      renderMainView();
+    }
+
+    function setTeacherPronoun(pronoun) {
+      teacherPronoun = pronoun;
+      if (Object.keys(selectedCriteriaMap).length > 0) {
+        rebuildCommentFromCriteria();
+      } else {
+        customCommentText = customCommentText
+          .replace(/Thầy mong/g, `${pronoun} mong`)
+          .replace(/Cô mong/g, `${pronoun} mong`);
+      }
+      renderMainView();
+    }
+
+    function applyWholeClassDefault() {
+      selectedCriteriaMap = {};
+      customCommentText = `Các bạn hôm nay đều rất tích cực giơ tay phát biểu, tương tác tốt với cô giáo nước ngoài, ngoan và chú ý lắng nghe giáo viên. ${teacherPronoun} mong các bạn sẽ giữ vững được tinh thần này trong các buổi học tới nhé`;
+      renderMainView();
+    }
+
+    function clearSelectedCriteria() {
+      selectedCriteriaMap = {};
+      customCommentText = "";
+      renderMainView();
+    }
+
+    function renderStep3Comment() {
+      const cls = CLASSES_DATA[activeClassCode] || CLASSES_DATA["KD28"];
+      const content = getActiveLessonContent();
+      const activeCat = FEEDBACK_CATEGORIES.find(c => c.id === activeFeedbackCatId) || FEEDBACK_CATEGORIES[0];
+      const totalSelected = Object.keys(selectedCriteriaMap).length;
+
+      return `
+        <!-- Collapsed Lesson Content Card (Hidden by default to save time) -->
+        <details class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)] text-xs">
+          <summary class="cursor-pointer font-bold text-[var(--foreground)] flex items-center justify-between">
+            <span>📚 Đã nạp tự động: ${content.unitLabel} — ${content.lessonLabel} (${content.components.length} mục)</span>
+            <span class="text-[var(--primary)] font-semibold">▾ Xem chi tiết</span>
+          </summary>
+          <div class="mt-2.5 pt-2.5 border-t border-[var(--border)] space-y-2">
+            <div class="flex gap-1 flex-wrap">
+              <button onclick="selectedPresetMode='AUTO'; renderMainView();" class="px-2 py-0.5 rounded text-xs font-semibold ${selectedPresetMode === 'AUTO' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--card)] border border-[var(--border)]'}">Tự động (${cls.code})</button>
+              <button onclick="selectedPresetMode='U1_L06'; renderMainView();" class="px-2 py-0.5 rounded text-xs font-semibold ${selectedPresetMode === 'U1_L06' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--card)] border border-[var(--border)]'}">Mẫu U1 - Lesson 06</button>
+              <button onclick="selectedPresetMode='U1_L08'; renderMainView();" class="px-2 py-0.5 rounded text-xs font-semibold ${selectedPresetMode === 'U1_L08' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--card)] border border-[var(--border)]'}">Mẫu U1 - Lesson 8</button>
+            </div>
+            <div class="space-y-1">
+              ${content.components.map(c => `
+                <div class="p-2 rounded bg-[var(--card)] border border-[var(--border)]">
+                  <div class="font-bold">🌸 ${c.type}: ${c.titles}</div>
+                  ${c.vocab ? `<div class="text-[var(--muted-foreground)]">Từ vựng: ${c.vocab}</div>` : ""}
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </details>
+
+        <!-- 9 Categorized Feedback Picker -->
+        <div class="p-3 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-2.5">
+          <div class="flex items-center justify-between gap-1 flex-wrap">
+            <span class="text-xs font-bold text-[var(--foreground)]">1. Chọn tiêu chí (${totalSelected} câu):</span>
+            <div class="flex items-center gap-1">
+              <button onclick="setTeacherPronoun('Cô')" class="px-2 py-0.5 rounded text-xs font-bold ${teacherPronoun === 'Cô' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--secondary)]'}">Cô</button>
+              <button onclick="setTeacherPronoun('Thầy')" class="px-2 py-0.5 rounded text-xs font-bold ${teacherPronoun === 'Thầy' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--secondary)]'}">Thầy</button>
+              <select onchange="setStudentTarget(this.value)" class="bg-[var(--secondary)] text-[var(--foreground)] border border-[var(--border)] rounded px-1.5 py-0.5 text-xs font-semibold">
+                <option value="Con" ${studentTarget === 'Con' ? 'selected' : ''}>Xưng: Con (Cá nhân)</option>
+                <option value="Các con" ${studentTarget === 'Các con' ? 'selected' : ''}>Xưng: Các con (Cả lớp)</option>
+                ${cls.students.map(st => `<option value="${st.name}" ${studentTarget === st.name ? 'selected' : ''}>Bé ${st.name}</option>`).join("")}
+              </select>
+            </div>
+          </div>
+
+          <!-- Compact 3x3 Grid for the 9 Categories -->
+          <div class="grid grid-cols-3 gap-1.5">
+            ${FEEDBACK_CATEGORIES.map(cat => {
+              const isCurrentCat = cat.id === activeFeedbackCatId;
+              let countInCat = 0;
+              cat.items.forEach((_, idx) => {
+                if (selectedCriteriaMap[`${cat.id}_${idx}`]) countInCat++;
+              });
+              return `
+                <button
+                  onclick="selectFeedbackCategory('${cat.id}')"
+                  class="px-2 py-1.5 rounded-lg border text-xs flex items-center justify-between transition ${
+                    isCurrentCat
+                      ? "bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)] font-bold"
+                      : countInCat > 0
+                      ? "bg-emerald-500/10 text-[var(--foreground)] border-emerald-500/40 font-semibold"
+                      : "bg-[var(--secondary)] text-[var(--foreground)] border-[var(--border)] font-medium"
+                  }"
+                >
+                  <span class="truncate">${cat.shortTitle}</span>
+                  ${countInCat > 0 ? `<span class="ml-1 px-1 rounded text-xs ${isCurrentCat ? 'bg-white/25 text-white' : 'bg-emerald-600 text-white'}">${countInCat}</span>` : ""}
+                </button>
+              `;
+            }).join("")}
+          </div>
+
+          <!-- Active Category Sentences (Tap to Toggle) -->
+          <div class="p-2.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-[var(--foreground)]">${activeCat.fullTitle}</span>
+              <span class="text-xs text-[var(--muted-foreground)]">Chạm để chọn / bỏ</span>
+            </div>
+            <div class="space-y-1 max-h-52 overflow-y-auto pr-0.5">
+              ${activeCat.items.map((sentence, idx) => {
+                const isSelected = !!selectedCriteriaMap[`${activeCat.id}_${idx}`];
+                const displaySentence = adaptPronoun(sentence);
+                return `
+                  <button
+                    onclick="toggleCriterion('${activeCat.id}', ${idx})"
+                    class="w-full text-left px-2.5 py-1.5 rounded-lg border text-xs transition flex items-start gap-1.5 ${
+                      isSelected
+                        ? "bg-emerald-600 text-white border-emerald-600 font-semibold"
+                        : "bg-[var(--card)] text-[var(--foreground)] border-[var(--border)] hover:opacity-85"
+                    }"
+                  >
+                    <span class="font-bold shrink-0">${isSelected ? "✓" : "+"}</span>
+                    <span>${displaySentence}</span>
+                  </button>
+                `;
+              }).join("")}
+            </div>
+          </div>
+
+          <!-- Formatting & Quick Actions + Live Textarea -->
+          <div class="space-y-1.5 pt-1 border-t border-[var(--border)]">
+            <div class="flex items-center justify-between gap-1 flex-wrap">
+              <div class="flex items-center gap-1">
+                <button onclick="setFeedbackFormatMode('bullet')" class="px-2 py-1 rounded text-xs font-semibold ${feedbackFormatMode === 'bullet' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--secondary)] text-[var(--muted-foreground)]'}">• Gạch dòng</button>
+                <button onclick="setFeedbackFormatMode('grouped')" class="px-2 py-1 rounded text-xs font-semibold ${feedbackFormatMode === 'grouped' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--secondary)] text-[var(--muted-foreground)]'}">Theo nhóm</button>
+                <button onclick="setFeedbackFormatMode('paragraph')" class="px-2 py-1 rounded text-xs font-semibold ${feedbackFormatMode === 'paragraph' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--secondary)] text-[var(--muted-foreground)]'}">Đoạn văn</button>
+              </div>
+              <div class="flex items-center gap-1">
+                <button onclick="applyWholeClassDefault()" class="px-2 py-1 rounded bg-[var(--secondary)] border border-[var(--border)] text-xs font-medium text-[var(--foreground)]">Mẫu chung cả lớp</button>
+                <button onclick="clearSelectedCriteria()" class="px-2 py-1 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-semibold">Xoá</button>
+              </div>
+            </div>
+
+            <textarea
+              rows="5"
+              oninput="customCommentText = this.value"
+              placeholder="Chọn các câu nhận xét ở trên hoặc nhập trực tiếp tại đây..."
+              class="w-full bg-[var(--secondary)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-2.5 text-xs leading-relaxed focus:outline-none"
+            >${customCommentText}</textarea>
+          </div>
+        </div>
+
+        <button onclick="switchTab('step4')" class="w-full py-3 px-4 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-bold shadow-sm hover:opacity-90 transition">
+          Tạo Tin Nhắn Báo Cáo ➔ (Bước 4)
+        </button>
+      `;
+    }
+
+    // ==========================================
+    // STEP 4: 1-CLICK COPY / ZALO MESSAGE
+    // ==========================================
+    function buildFormattedMessage() {
+      const dayObj = getSelectedDayObj();
+      const cls = CLASSES_DATA[activeClassCode] || CLASSES_DATA["KD28"];
+      const content = getActiveLessonContent();
+
+      let lines = [];
+      if (includeGreetingLine) {
+        lines.push(`${teacherPronoun} xin gửi bố mẹ báo cáo buổi học lớp ${cls.code} hôm nay ạ`);
+      }
+      lines.push(`📚Buổi học: ${dayObj.dmy}`);
+      lines.push(`🌟${content.unitLabel}`);
+      lines.push(`🌟${content.lessonLabel}`);
+      lines.push(``);
+      lines.push(`Nội dung buổi học của các con:`);
+
+      content.components.forEach(comp => {
+        lines.push(`🌸${comp.type}: ${comp.titles}`);
+        if (comp.vocab && comp.vocab.trim() !== "") {
+          lines.push(`Từ vựng gồm: ${comp.vocab}`);
+        }
+      });
+
+      lines.push(`________`);
+      lines.push(customCommentText.trim());
+
+      return lines.join("\n");
+    }
+
+    function copyReportMessage() {
+      const msg = document.getElementById("finalMessageTextarea").value;
+      navigator.clipboard.writeText(msg).then(() => {
+        showToast("📋 Đã sao chép! Dán ngay vào nhóm Zalo lớp.");
+      });
+    }
+
+    function shareReportMessage() {
+      const msg = document.getElementById("finalMessageTextarea").value;
+      if (navigator.share) {
+        navigator.share({
+          title: `Báo cáo buổi học lớp ${activeClassCode}`,
+          text: msg
+        }).catch(() => {});
+      } else {
+        copyReportMessage();
+      }
+    }
+
+    function renderStep4Message() {
+      const msg = buildFormattedMessage();
+
+      return `
+        <!-- Top Primary Action Buttons for instant access -->
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="copyReportMessage()" class="py-3 px-3 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-bold shadow-sm hover:opacity-90 transition">
+            📋 Sao chép Tin nhắn
+          </button>
+          <button onclick="shareReportMessage()" class="py-3 px-3 rounded-xl bg-emerald-600 text-white text-xs font-bold shadow-sm hover:opacity-90 transition">
+            📤 Gửi qua Zalo / Share
+          </button>
+        </div>
+
+        <!-- Clean Message Preview -->
+        <div class="p-3 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-[var(--foreground)]">Nội dung tin nhắn (Lớp ${activeClassCode}):</span>
+            <label class="flex items-center gap-1 text-[var(--muted-foreground)] cursor-pointer">
+              <input type="checkbox" ${includeGreetingLine ? "checked" : ""} onchange="includeGreetingLine = this.checked; renderMainView();" />
+              <span>Có câu chào đầu</span>
+            </label>
+          </div>
+          <textarea
+            id="finalMessageTextarea"
+            rows="14"
+            class="w-full bg-[var(--secondary)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-2.5 text-xs leading-relaxed focus:outline-none"
+          >${msg}</textarea>
+        </div>
+      `;
+    }
+
+    function renderMainView() {
+      const container = document.getElementById("mainView");
+      if (currentTab === "step1") container.innerHTML = renderStep1Schedule();
+      else if (currentTab === "step2") container.innerHTML = renderStep2Attendance();
+      else if (currentTab === "step3") container.innerHTML = renderStep3Comment();
+      else if (currentTab === "step4") container.innerHTML = renderStep4Message();
+    }
+
+    rebuildCommentFromCriteria();
+    renderDateStrip();
+    renderMainView();
+  </script>
+</body>
+</html>
