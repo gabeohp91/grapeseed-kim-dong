@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GrapeSEED Kim Đồng - App Giáo Viên (Tinh giản)</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="GrapeSEED KD" />
   <meta name="theme-color" content="#4f46e5" />
@@ -150,143 +150,1294 @@
     ];
 
     const LESSON_CONTENT_PRESETS = {
+      "U1_L01": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 01",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Hello!, Where?, Ten Little Monkeys",
+                        "vocab": "friend, run, sit, big, small/little, play, monkey, tree, 1, 2, 3, 4, 5"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Monkey",
+                        "vocab": "come/go, up/down"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Animals Play, Family and Friends",
+                        "vocab": "alligator, animals, bird, giraffe, grass, hippopotamus/hippo, kangaroo, rabbit, snake, turtle, baby, brother, family, father, mother, sister"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "ball, yes/no, zoo, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Stand Up!",
+                        "vocab": "hands, sleep, stand"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, m",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L02": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 02",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Hello!, Where?, Ten Little Monkeys",
+                        "vocab": "friend, run, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Monkey",
+                        "vocab": "big/small/little, monkey, play, tree"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family and Friends, Animals Play",
+                        "vocab": "baby, brother, family, father, mother, sister, alligator, animals, giraffe, grass, hippopotamus/hippo, kangaroo, rabbit, snake, turtle"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "ball, bird, yes/no, zoo, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Stand Up!",
+                        "vocab": "hands, sleep, stand"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: f, k, z, m, d",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L03": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 03",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Hello!, Ten Little Monkeys, Where?",
+                        "vocab": "friend, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, run, sit, up/down"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Monkey",
+                        "vocab": "big/small/little, come/go, monkey, play, tree"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Animals Play, Family and Friends",
+                        "vocab": "alligator, animals, bird, giraffe, grass, hippopotamus/hippo, kangaroo, rabbit, snake, turtle, baby, brother, family, father, mother, sister"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "yes/no, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Stand Up!",
+                        "vocab": "hands, sleep, stand"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: f, k, z, m, d",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L04": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 04",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Hello!, I Love Them All, Ten Little Monkeys",
+                        "vocab": "friend, tall/short, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Monkey",
+                        "vocab": "come/go, monkey, play, tree"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family and Friends, Animals Play",
+                        "vocab": "baby, big/small/little, brother, family, father, mother, sister, alligator, animals, bird, giraffe, grass, hippopotamus/hippo, kangaroo, rabbit, snake, turtle"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "ball, yes/no, zoo, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Stand Up!",
+                        "vocab": "hands, sit, sleep, stand"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: f, k, z, d, m",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L05": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 05",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Five Little Elephants, I Love Them All, Alphabet Song",
+                        "vocab": "climb, elephant, floor, hop, kangaroo, monkey, walk, baby, brother, father, mother, sister, tall/short, sing"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Zoo, Friends",
+                        "vocab": "friend, animals, kangaroo, zebra, zoo, play, run"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family at the Zoo, Mouse in the Barn",
+                        "vocab": "bear, boys, circle/line, hippopotamus/hippo, girls, gorilla, lion, panda, zoo, chair, grass, over/under, rock, snake, steps, through, tree"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit",
+                        "vocab": "crawl, rabbit, up/down, zebra"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, m, k, z, f",
+                        "vocab": ""
+                  }
+            ]
+      },
       "U1_L06": {
-        unitLabel: "Unit 1",
-        lessonLabel: "Lesson 06",
-        components: [
-          { type: "Song", titles: "I Love Them All, Five Little Elephants, Alphabet Song", vocab: "crawl, hippo, dance, elephant, kangaroo, play, walk, baby, brother, father, mother, sister, tall/short" },
-          { type: "Poem", titles: "Zoo, Friends", vocab: "animals, kangaroo, zebra, zoo, friend, play, run" },
-          { type: "Phonograms/Word Cards", titles: "PCs, PWCs: d, m,", vocab: "" },
-          { type: "Action Activity", titles: "Hop Like a Rabbit", vocab: "crawl, monkey, rabbit, tree, up/down" },
-          { type: "Story", titles: "Mouse in the Barn, Family at the Zoo", vocab: "chair, floor, grass, rock, snake, steps, through, bear, boys, circle/line, family, girls, gorilla, hippopotamus/hippo, lion, over/under, panda" }
-        ]
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 06",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Alphabet Song, Five Little Elephants, I Love Them All",
+                        "vocab": "sing, climb, dance, elephant, hop, walk, baby, brother, father, mother, sister, tall/short"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Friends, Zoo",
+                        "vocab": "friend, play, run, animals, kangaroo, zebra, zoo"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Mouse in the Barn, Family at the Zoo",
+                        "vocab": "chair, floor, grass, rock, snake, steps, through, bear, boys, circle/line, family, girls, gorilla, hippopotamus/hippo, lion, over/under, panda"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit",
+                        "vocab": "crawl, monkey, rabbit, tree, up/down"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, m, f, k, z",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L07": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 07",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "I Love Them All, Five Little Elephants, Alphabet Song",
+                        "vocab": "baby, brother, father, mother, sister, tall/short, dance, elephant, kangaroo, play, walk, sing"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Zoo, Friends",
+                        "vocab": "animals, kangaroo, zebra, zoo, friend, play, run"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family at the Zoo, Mouse in the Barn",
+                        "vocab": "bear, boys, circle/line, family, girls, gorilla, hippopotamus/hippo, lion, panda, zebra, zoo, chair, floor, grass, over/under, rock, snake, steps, through"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit",
+                        "vocab": "climb, crawl, friend, hop, monkey, rabbit, tree, up/down, zebra"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, m, k, z, f",
+                        "vocab": ""
+                  }
+            ]
       },
       "U1_L08": {
-        unitLabel: "Unit 1",
-        lessonLabel: "Lesson 8",
-        components: [
-          { type: "Song", titles: "Five Little Elephants, I Love Them All, Alphabet Song", vocab: "climb, dance, elephant, kangaroo, monkey, walk, baby, brother, father, mother, sister, tall/short, sing" },
-          { type: "Poem", titles: "Friends", vocab: "friend, play, run" },
-          { type: "Story", titles: "Mouse in the Barn, Family in the Zoo", vocab: "chair, floor, grass, rock, snake, steps, through, bear, boys, girls, gorilla, hippopotamous/hippo, lion, over/under, panda, zoo" },
-          { type: "Big Book", titles: "One", vocab: "family, house, sleep, one" },
-          { type: "Action Activity", titles: "Hop Like a Rabbit", vocab: "crawl, hop, rabbit, tree, zebra" },
-          { type: "Phonogram", titles: "d, k, m, z", vocab: "" }
-        ]
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 08",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Five Little Elephants, I Love Them All, Alphabet Song",
+                        "vocab": "climb, dance, elephant, kangaroo, monkey, walk, baby, brother, father, mother, sister, tall/short, sing"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Friends",
+                        "vocab": "friend, play, run"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Mouse in the Barn, Family at the Zoo",
+                        "vocab": "chair, floor, grass, rock, snake, steps, through, bear, boys, girls, gorilla, hippopotamus/hippo, lion, over/under, panda, zoo"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "family, house, sleep, 1"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit",
+                        "vocab": "crawl, hop, rabbit, tree, zebra"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, k, m, z, f",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L09": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 09",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Good Morning Song, Alphabet Song, Goodbye Song",
+                        "vocab": "play, sing"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family at the Zoo, What Do You See?",
+                        "vocab": "bear, boys, family, girls, gorilla, lion, over/under, panda, zoo, big/small/little, fly, jump, run, tiger"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "baby, brother, father, house, mother, sister, 1"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Stand Up!, I Say; You Do",
+                        "vocab": "come/go, hands, sit, sleep, stand, up/down, chair, circle/line, fast/slow, stop/go, teacher, walk, 2"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, f, k, m, z",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L10": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 10",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Good Morning Song, Where?, Goodbye Song",
+                        "vocab": "play, run, sit, up/down"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Monkey",
+                        "vocab": "big/small/little, come/go, monkey, play, tree, up/down"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "What Do You See?, Animals Play",
+                        "vocab": "big/small/little, bird, fly, giraffe, jump, run, tiger, alligator, friend, grass, hippopotamus/hippo, kangaroo, snake, rabbit, tree, turtle"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "baby, brother, family, father, house, mother, sister, 1"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "I Say; You Do, Stand Up!",
+                        "vocab": "chair, fast/slow, over/under, sit, sleep, up/down, teacher, walk, 2, come/go, hands, stand"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: f, k, z, d, m",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L11": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 11",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Good Morning Song, Five Little Elephants, Goodbye Song",
+                        "vocab": "dance, elephant, kangaroo, play, 1, 4, 5"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Zoo",
+                        "vocab": "zebra, animals, kangaroo, zoo"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Mouse in the Barn, Family and Friends, What Do You See?",
+                        "vocab": "floor, grass, over/under, rock, snake, steps, through, tree, baby, brother, family, father, friend, mother, sister, big/small/little, fly, jump, run, tiger, up/down"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Stand Up!, I Say; You Do",
+                        "vocab": "come/go, hands, sit, sleep, stand, chair, circle/line, fast/slow, teacher, walk, 2"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, f, m, k, z",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L12": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 12",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Good Morning Song, Where?, Goodbye Song",
+                        "vocab": "play, run, sit, up/down"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Monkey",
+                        "vocab": "big/small/little, come/go, monkey, play, tree, up/down"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "What Do You See?, Animals Play",
+                        "vocab": "big/small/little, fly, tiger, up/down, climb, crawl, friend, giraffe, grass, hippopotamus/hippo, hop, jump, play, run, tree, turtle"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "ball, bird, yes/no, zoo, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "I Say; You Do, Stand Up!",
+                        "vocab": "chair, fast/slow, stop/go, teacher, walk, 1, 2, come/go, hands, sit, stand"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: f, k, z, d, m",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L13": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 13",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Hello!, I Love Them All, Ten Little Monkeys",
+                        "vocab": "friend, brother, father, mother, sister, tall/short, big/small/little, monkey"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Friends",
+                        "vocab": "play, run"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Mouse in the Barn, Family and Friends",
+                        "vocab": "chair, floor, grass, over/under, snake, steps, through, tree, baby, family"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "ball, bird, yes/no, zoo, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Stand Up!, I Say; You Do",
+                        "vocab": "hands, sit, sleep, stand, up/down, circle/line, stop/go, teacher, 1, 2"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, k, m, z, f",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L14": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 14",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Five Little Elephants, Hello!, Goodbye Song",
+                        "vocab": "big/small/little, dance, floor, play, 1, 4, 5, friend"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Zoo, Monkey",
+                        "vocab": "animals, kangaroo, zebra, zoo, big/small/little, come/go, monkey, play, tree, up/down"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "What Do You See?, Animals Play",
+                        "vocab": "bear, girls, gorilla, grass, panda, rock, snake, tiger, climb, crawl, fly, giraffe, hippopotamus/hippo, hop, jump, monkey, run, sit, sleep, tree, turtle"
+                  },
+                  {
+                        "type": "Story Dictionary",
+                        "titles": "Jonny Bear “This is Me!”",
+                        "vocab": "grandfather, grandmother"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit",
+                        "vocab": "alligator, bird, elephant, rabbit, zebra"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: k, z, d, m",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L15": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 15",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Good Morning Song, Where?, Alphabet Song",
+                        "vocab": "run, sing"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family at the Zoo, Mouse in the Barn",
+                        "vocab": "bear, boys, elephant, girls, gorilla, lion, over/under, panda, zoo, chair, floor, grass, rock, snake, steps, through"
+                  },
+                  {
+                        "type": "Story Dictionary",
+                        "titles": "Jonny Bear “This is Me!”",
+                        "vocab": "grandfather, grandmother"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "baby, brother, family, father, house, mother, sister, 1"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Stand Up!, Hop Like a Rabbit",
+                        "vocab": "hands, sit, sleep, stand, up/down, climb, crawl, fly, hop, jump, stop/go, walk"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, f, k, m, z",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L16": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 16",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Alphabet Song, Ten Little Monkeys, Hello!",
+                        "vocab": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Friends",
+                        "vocab": "friend, play, run"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Animals Play, What Do You See?",
+                        "vocab": "climb, crawl, fly, friend, giraffe, hippopotamus/hippo, hop, jump, sit, sleep, turtle, bear, bird, girls, gorilla, panda, rock, snake, tiger, tree"
+                  },
+                  {
+                        "type": "Story Dictionary",
+                        "titles": "Jonny Bear “This is Me!”",
+                        "vocab": "grandfather, grandmother"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "ball, yes/no, zoo, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "I Say; You Do",
+                        "vocab": "circle/line, fast/slow, over/under, stop/go, teacher, walk"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, k, m, z, f",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L17": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 17",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Five Little Elephants, I Love Them All, Where?, Goodbye Song",
+                        "vocab": "big/small/little, dance, elephant, floor, kangaroo, 1, 4, 5, tall/short"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Zoo",
+                        "vocab": "zebra, animals, kangaroo, zoo"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family at the Zoo, Family and Friends",
+                        "vocab": "ball, bear, circle/line, family, lion, play, rock, sit, walk, baby, brother, father, friend, mother, sister"
+                  },
+                  {
+                        "type": "Story Dictionary",
+                        "titles": "Jonny Bear “This is Me!”",
+                        "vocab": "grandfather, grandmother"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit",
+                        "vocab": "climb, crawl, fly, hop, jump, run, tree, up/down, zoo"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, f, m, k, z",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L18": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 18",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Good Morning Song, Where?, Hello!",
+                        "vocab": "play, run, sit, up/down, friend"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Monkey",
+                        "vocab": "big/small/little, come/go, monkey, play, tree, up/down"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Animals Play, What Do You See?, Mouse in the Barn",
+                        "vocab": "climb, crawl, fly, friend, giraffe, hop, jump, play, run, sit, sleep, turtle, girls, grass, over/under, rock, tiger, tree, up/down, chair, floor, snake, steps, through"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "baby, brother, family, father, house, mother, sister, sleep, 1"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit",
+                        "vocab": "alligator, elephant, kangaroo, stop/go, zebra, zoo"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: f, k, z, d, m",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L19": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 19",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Hello!, I Love Them All, Ten Little Monkeys",
+                        "vocab": "friend, baby, tall/short, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Zoo",
+                        "vocab": "animals, kangaroo, zebra, zoo"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Mouse in the Barn, Family at the Zoo, Family and Friends",
+                        "vocab": "chair, floor, rock, steps, through, baby, gorilla, lion, mother, play, sister, sit, sleep, tiger, walk, ball, brother, family, father"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "yes/no"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "I Say; You Do",
+                        "vocab": "circle/line, come/go, fast/slow, teacher"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, f, m, k, z",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L20": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 20",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Alphabet Song, Five Little Elephants, Goodbye Song",
+                        "vocab": "sing, big/small/little, dance, elephant, floor, jump, 5"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Friends",
+                        "vocab": "friend, play, run"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Animals Play, What Do You See?",
+                        "vocab": "giraffe, play, sleep, turtle, fly, jump, over/under, run, sit, up/down"
+                  },
+                  {
+                        "type": "Story Dictionary",
+                        "titles": "Jonny Bear “This is Me!”",
+                        "vocab": "grandmother, grandfather"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "baby, brother, family, father, house, mother, sister, 1"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit, Stand Up!",
+                        "vocab": "climb, crawl, hop, stop/go, walk, zebra, come/go, hands, stand"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, k, m, z, f",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L21": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 21",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Good Morning Song, Hello!, I Love Them All",
+                        "vocab": "tall/short, play, friend"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Zoo",
+                        "vocab": "zebra, animals, kangaroo, zoo"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Mouse in the Barn, Family at the Zoo, Family and Friends",
+                        "vocab": "chair, floor, grass, steps, through, animals, boys, brother, hippopotamus/hippo, lion, mother, sister, ball, big/small/little, family, friend, jump, play, run"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "bird, yes/no, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "I Say; You Do",
+                        "vocab": "circle/line, fast/slow, stand, teacher, 1, 2"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, f, m, k, z",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L22": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 22",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Where?, Ten Little Monkeys, Alphabet Song",
+                        "vocab": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, sing"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Monkey",
+                        "vocab": "big/small/little, come/go, monkey, play, tree, up/down"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "What Do You See?, Animals Play",
+                        "vocab": "bear, girls, gorilla, jump, panda, rock, tiger, animals, ball, crawl, giraffe, kangaroo, monkey, play, rabbit, sleep, turtle"
+                  },
+                  {
+                        "type": "Story Dictionary",
+                        "titles": "Jonny Bear “This is Me!”",
+                        "vocab": "grandfather, grandmother"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "baby, brother, family, father, house, mother, sister, 1"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Stand Up!",
+                        "vocab": "hands, up/down"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: f, k, z, d, m",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L23": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 23",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Hello!, Five Little Elephants, Goodbye Song",
+                        "vocab": "climb, dance, elephant, hop, kangaroo, monkey, walk"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Friends",
+                        "vocab": "friend, play, run"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family at the Zoo, Family and Friends, Mouse in the Barn",
+                        "vocab": "ball, boys, circle/line, come/go, grass, lion, sleep, big/small/little, family, friend, jump, play, run, chair, floor, steps, through"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "yes/no, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit",
+                        "vocab": "alligator, bird, rabbit, tree, zebra, zoo"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, k, m, z, f",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L24": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 24",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Good Morning Song, Hello!, Five Little Elephants",
+                        "vocab": "climb, dance, elephant, hop, kangaroo, monkey, walk"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Zoo",
+                        "vocab": "animals, kangaroo, zebra, zoo"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Animals Play, What Do You See?",
+                        "vocab": "alligator, bird, crawl, friend, giraffe, hippopotamus/hippo, over/under, rabbit, turtle, bear, gorilla, panda, rock, sit, snake, tiger, tree, up/down"
+                  },
+                  {
+                        "type": "Story Dictionary",
+                        "titles": "Jonny Bear “This is Me!”",
+                        "vocab": "grandfather, grandmother"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "house"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "I Say; You Do",
+                        "vocab": "circle/line, come/go, fast/slow, stand, stop/go, teacher"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, k, m, z",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L25": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 25",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "I Love Them All, Ten Little Monkeys, Hello!",
+                        "vocab": "baby, brother, father, mother, sister, tall/short, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Friends, Monkey",
+                        "vocab": "friend, play, run, big/small/little, come/go, monkey, tree, up/down"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family at the Zoo, What Do You See?",
+                        "vocab": "animals, boys, girls, gorilla, lion, sing, tiger, tree, zoo, bear, big/small/little, jump, panda"
+                  },
+                  {
+                        "type": "Story Dictionary",
+                        "titles": "Jonny Bear “This is Me!”",
+                        "vocab": "grandmother, grandfather"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit, Stand Up!",
+                        "vocab": "bird, elephant, friend, monkey, rock, zebra, hands"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: f, z, d, k, m",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L26": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 26",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Where?, I Love Them All, Goodbye Song",
+                        "vocab": "baby, brother, father, mother, sister, tall/short"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Friends",
+                        "vocab": "friend, play, run"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "What Do You See?, Mouse in the Barn, Family and Friends",
+                        "vocab": "bear, bird, fly, grass, panda, sit, snake, tiger, chair, floor, steps, through, up/down, ball, big/small/little, family, jump, play, run"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "house"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "I Say; You Do",
+                        "vocab": "circle/line, come/go, fast/slow, stop/go, teacher, 2"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, k, m, z, f",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L27": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 27",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Good Morning Song, Five Little Elephants, Hello!",
+                        "vocab": "big/small/little, dance, elephant, floor, 2, 3, 4, 5, friend"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Zoo",
+                        "vocab": "zebra, animals, kangaroo, zoo"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family at the Zoo, Animals Play",
+                        "vocab": "animals, boys, girls, gorilla, lion, sing, tiger, tree, alligator, crawl, giraffe, kangaroo, over/under, hippopotamus/hippo, rabbit, rock, turtle"
+                  },
+                  {
+                        "type": "Story Dictionary",
+                        "titles": "Jonny Bear “This is Me!”",
+                        "vocab": "grandmother, grandfather"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "bird, yes/no, zoo, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Stand Up!",
+                        "vocab": "hands"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, f, m, k, z",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L28": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 28",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Hello!, I Love Them All, Ten Little Monkeys",
+                        "vocab": "baby, brother, father, mother, sister, tall/short, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Monkey",
+                        "vocab": "big/small/little, come/go, monkey, play, tree, up/down"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family and Friends, Family at the Zoo, What Do You See?",
+                        "vocab": "ball, big/small/little, family, friend, jump, play, run, animals, bird, boys, circle/line, girls, gorilla, lion, sing, tiger, zoo, bear, fly, grass, panda, snake, sit, up/down"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "house"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit",
+                        "vocab": "climb, crawl, hop, stop/go, tree, walk"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, m",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L29": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 29",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Five Little Elephants, Where?, Goodbye Song",
+                        "vocab": "dance, elephant"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Friends",
+                        "vocab": "friend, play, run"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "What Do You See?, Animals Play, Mouse in the Barn",
+                        "vocab": "bear, fly, grass, panda, run, sit, snake, alligator, animals, giraffe, kangaroo, rabbit, rock, turtle, over/under, steps, through, up/down"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Red",
+                        "vocab": "bird, yes/no, zoo, red"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "I Say; You Do",
+                        "vocab": "circle/line, come/go, fast/slow, stand, stop/go, teacher, 1, 2"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, f, k, m, z",
+                        "vocab": ""
+                  }
+            ]
+      },
+      "U1_L30": {
+            "unitLabel": "Unit 1",
+            "lessonLabel": "Lesson 30",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Good Morning Song, Hello!, Alphabet Song",
+                        "vocab": "play, friend, sing"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Zoo",
+                        "vocab": "animals, kangaroo, zebra, zoo"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Family and Friends, What Do You See?",
+                        "vocab": "brother, family, father, mother, sister, bear, fly, girls, gorilla, jump, run, sit, tiger"
+                  },
+                  {
+                        "type": "Story Dictionary",
+                        "titles": "Jonny Bear “This is Me!”",
+                        "vocab": "grandmother, grandfather"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "One",
+                        "vocab": "house"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Hop Like a Rabbit, Stand Up!",
+                        "vocab": "alligator, bird, rabbit, rock, zebra, zoo"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "PCs, PWCs: d, f, k, m, z",
+                        "vocab": ""
+                  }
+            ]
       },
       "U2_DEFAULT": {
-        unitLabel: "Unit 2",
-        lessonLabel: "Lesson 21",
-        components: [
-          { type: "Song", titles: "Up and Down, Two Little Apples, Seven Good Friends", vocab: "up/down, apple, tree, friend, count, 1-10" },
-          { type: "Poem", titles: "Alligator, Umbrella", vocab: "alligator, grass, sky, umbrella, rain" },
-          { type: "Story", titles: "Too Big, Fun Together", vocab: "hat, pants, pocket, shirt, shoes, sweater, too big/little, fun, play" },
-          { type: "Big Book", titles: "Blue, Two", vocab: "blue, two, shoes, balls, birds" },
-          { type: "Action Activity", titles: "Touch Your Toes!", vocab: "arms, ear, eye, feet, hair, hands, head, legs, mouth, nose, stomach, toes, touch" },
-          { type: "Phonogram", titles: "b, g, l, n, u", vocab: "" }
-        ]
+            "unitLabel": "Unit 2",
+            "lessonLabel": "Lesson 22",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Hello!, I Can!, Two Little Eyes",
+                        "vocab": "buttons, grandmother, grandfather, pocket, see, shirt, shoes, two, worm"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Buttons, Stop!",
+                        "vocab": "buttons, coat, go/stop, red, shirt, shoes, sky"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Bears Go Home, Early in the Morning",
+                        "vocab": "back, bear, bedroom, comb, drink, eat, face, food, get up, go to sleep, home, wash"
+                  },
+                  {
+                        "type": "Big Book",
+                        "titles": "Blue, Two",
+                        "vocab": "blue, box, cap, hat, two, umbrella, water"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Jump!",
+                        "vocab": "clap, jump, nose, spin, touch, walk"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "b, g, l, n, r, u",
+                        "vocab": ""
+                  }
+            ]
       },
       "U4_DEFAULT": {
-        unitLabel: "Unit 4",
-        lessonLabel: "Lesson 07",
-        components: [
-          { type: "Song", titles: "Wait and See, My Silly Monkey, Baking a Cake", vocab: "wait, see, silly, monkey, bake, cake, kitchen, oven" },
-          { type: "Poem", titles: "Early in the Morning, Insects", vocab: "early, morning, sun, insects, bee, spider, worm" },
-          { type: "Story", titles: "Mouse's Day, Jonny Bear Goes to School", vocab: "breakfast, lunch, dinner, clock, time, school, teacher, bag" },
-          { type: "Big Book", titles: "Four, Yellow", vocab: "four, yellow, ducks, flowers, bananas" },
-          { type: "Action Activity", titles: "Around the Clock", vocab: "jump, turn around, hop, clap, stop, clock" },
-          { type: "Phonogram", titles: "h, j, q, v, w, y", vocab: "" }
-        ]
+            "unitLabel": "Unit 4",
+            "lessonLabel": "Lesson 08",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Put It On, Four Little Ducks, Sing a Song",
+                        "vocab": "boots, cap, coat, dress, hat, jacket, pajamas, pants, put on, shoes, sweater"
+                  },
+                  {
+                        "type": "Poem",
+                        "titles": "Umbrella, Wind",
+                        "vocab": "black, blow, rain, sky, umbrella, wet, wind"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "After School, Mouse and Hisouden",
+                        "vocab": "afternoon, boots, clothes, take off, dirty/clean, find, hide, kitchen, living room"
+                  },
+                  {
+                        "type": "Action Activity",
+                        "titles": "Skip With Me!",
+                        "vocab": "fast/slow, march, skip, stop, walk"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "h, j, p, qu, v, w, x, y",
+                        "vocab": ""
+                  }
+            ]
       },
       "U5_DEFAULT": {
-        unitLabel: "Unit 5",
-        lessonLabel: "Lesson 09",
-        components: [
-          { type: "Song", titles: "Sweet Potatoes, Bus Stop, Do You Know?", vocab: "potatoes, hungry, bus, stop, street, driver, know" },
-          { type: "Poem", titles: "Rain, Sharing", vocab: "rain, wet, umbrella, share, friend, toy" },
-          { type: "Story", titles: "Going to the Grocery Store, Grandpa's Farm", vocab: "grocery store, milk, bread, apples, farm, cow, horse, pig, sheep, chicken" },
-          { type: "Big Book", titles: "Five, Orange", vocab: "five, orange, carrots, pumpkins, oranges" },
-          { type: "Action Activity", titles: "Move Together!", vocab: "march, skip, tiptoe, wave, nod, shake hands" },
-          { type: "Phonogram", titles: "sh, ch, th, wh", vocab: "" }
-        ]
+            "unitLabel": "Unit 5",
+            "lessonLabel": "Phonics (PN)",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Five!, Buzz, Buzz, Buzz, Balls",
+                        "vocab": "bee, bounce, catch, five, fly, hit, kick, roll, throw"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Going to School, What Can You Do?",
+                        "vocab": "bus, car, drive, ride, school, street, walk, dance, draw, paint, read, sing"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "sh, th, ch, wh, ph",
+                        "vocab": ""
+                  }
+            ]
       },
       "U6_DEFAULT": {
-        unitLabel: "Unit 6",
-        lessonLabel: "Lesson 22",
-        components: [
-          { type: "Song", titles: "When I Grow Up, Sing a Song, Let's Go!", vocab: "grow up, doctor, firefighter, teacher, pilot, sing, song" },
-          { type: "Poem", titles: "My Shadow, At the Beach", vocab: "shadow, sun, beach, sand, ocean, swim, shell" },
-          { type: "Story", titles: "A Day at the Park, Helping at Home", vocab: "park, slide, swing, bench, clean, sweep, wash, dishes, room" },
-          { type: "Big Book", titles: "Six, Purple", vocab: "six, purple, grapes, plums, hats" },
-          { type: "Action Activity", titles: "Follow the Leader", vocab: "follow, leader, behind, in front of, beside, between" },
-          { type: "Phonogram", titles: "ck, ng, nk, oo", vocab: "" }
-        ]
+            "unitLabel": "Unit 6",
+            "lessonLabel": "Lesson 26",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Six Little Ducks, Yes, I Can!, Sharing",
+                        "vocab": "duck, feathers, river, share, six, water, wing"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "At the Park, Grandpa's Farm",
+                        "vocab": "bench, climb, flower, grass, park, picnic, playground, slide, swing, tree, barn, cow, duck, farm, fence, horse, pig, sheep, tractor"
+                  },
+                  {
+                        "type": "Phonograms/Word Cards",
+                        "titles": "ee, ar, or, er, ir, ur",
+                        "vocab": ""
+                  }
+            ]
       },
       "U7_DEFAULT": {
-        unitLabel: "Unit 7",
-        lessonLabel: "Lesson 21",
-        components: [
-          { type: "Song", titles: "Days of the Week, Weather Song, Travelling", vocab: "Monday, Tuesday, Wednesday, Thursday, Friday, sunny, rainy, windy, cloudy" },
-          { type: "Poem", titles: "Seasons, The Wind", vocab: "spring, summer, fall, winter, warm, hot, cool, cold, wind, blow" },
-          { type: "Story", titles: "The Lost Puppy, Camping Trip", vocab: "puppy, lost, find, forest, tent, campfire, stars, night, flashlight" },
-          { type: "Big Book", titles: "Seven, Brown & White", vocab: "seven, brown, white, bears, snow, bunnies" },
-          { type: "Action Activity", titles: "Simon Says", vocab: "stretch, bend, reach, squat, balance, freeze" },
-          { type: "Phonogram", titles: "ar, er, ir, or, ur", vocab: "" }
-        ]
+            "unitLabel": "Unit 7",
+            "lessonLabel": "TEST / Ôn tập",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Seven Days of the Week, Up in the Sky",
+                        "vocab": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, week, cloud, moon, rainbow, sky, star, sun"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "A Sunny Day, Our Garden",
+                        "vocab": "bright, cloud, hot/cold, rain, shine, sun, sunny, warm, weather, windy, beans, carrot, corn, dig, flower, garden, grow, onion, peas, plant, potato, seed, tomato, water"
+                  }
+            ]
       },
       "U8_DEFAULT": {
-        unitLabel: "Unit 8",
-        lessonLabel: "Lesson 11",
-        components: [
-          { type: "Song", titles: "Months of the Year, Healthy Food, Our Neighborhood", vocab: "January-December, vegetables, fruit, healthy, strong, hospital, library, bakery" },
-          { type: "Poem", titles: "A Little Seed, Night Time", vocab: "seed, plant, water, sunlight, grow, leaf, flower, moon, stars" },
-          { type: "Story", titles: "Birthday Party, Visit to the Dentist", vocab: "birthday, party, present, candle, wish, dentist, teeth, brush, smile" },
-          { type: "Action Activity", titles: "Step and Turn", vocab: "left, right, straight, corner, cross, turn" },
-          { type: "Phonogram", titles: "ai, ay, ee, ea, oa, ow", vocab: "" }
-        ]
+            "unitLabel": "Unit 8",
+            "lessonLabel": "Phonics (PN)",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Eight!, Let's Go!, My Favorite Food",
+                        "vocab": "eight, octopus, swim, tentacles, bread, butter, cheese, chicken, egg, fish, fruit, juice, meat, milk, noodles, rice, salad, sandwich, soup, vegetables"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "Dinner Time, At the Supermarket",
+                        "vocab": "bowl, chopsticks, cup, dinner, dish, fork, glass, hungry, knife, napkin, plate, spoon, table, thirsty, buy, cart, food, grocery, money, pay, shelf, shop, supermarket"
+                  }
+            ]
       },
       "U10_DEFAULT": {
-        unitLabel: "Unit 10",
-        lessonLabel: "Lesson 03",
-        components: [
-          { type: "Song", titles: "Around the World, Working Together", vocab: "world, country, travel, airplane, boat, team, help, together" },
-          { type: "Poem", titles: "The Ocean, Mountain High", vocab: "ocean, wave, whale, dolphin, shark, mountain, high, climb, peak" },
-          { type: "Story", titles: "The School Play, Treasure Map", vocab: "stage, costume, actor, audience, clap, map, treasure, island, bridge" },
-          { type: "Action Activity", titles: "Act It Out", vocab: "whisper, shout, tiptoe, hurry, carry, pull, push" },
-          { type: "Phonogram", titles: "igh, ie, ew, ue, oi, oy", vocab: "" }
-        ]
+            "unitLabel": "Unit 10",
+            "lessonLabel": "Phonics (PN)",
+            "components": [
+                  {
+                        "type": "Song",
+                        "titles": "Ten!, Seasons, Around the Town",
+                        "vocab": "spring, summer, fall/autumn, winter, season, bakery, bank, bookstore, fire station, hospital, library, police station, post office, restaurant, town"
+                  },
+                  {
+                        "type": "Story",
+                        "titles": "A Trip to the City, Four Seasons",
+                        "vocab": "bridge, building, busy, city, crowd, museum, noisily/quietly, sidewalk, subway, tall, taxi, traffic, bloom, change, cold, cool, hot, leaves, snow, warm, wind"
+                  }
+            ]
       },
       "U16_DEFAULT": {
-        unitLabel: "Unit 16",
-        lessonLabel: "Lesson 32 (WR1 / Movers)",
-        components: [
-          { type: "Song", titles: "Unit 16 Review Chant & Movers Speaking", vocab: "adventure, explore, compass, journey" },
-          { type: "Story", titles: "WR1 & Reading Comprehension", vocab: "Main idea, sequence of events, past simple" },
-          { type: "Phonogram", titles: "New Round Up Grammar Focus", vocab: "" }
-        ]
+            "unitLabel": "Unit 16",
+            "lessonLabel": "Unit 17 - L2",
+            "components": [
+                  {
+                        "type": "Reading / Story",
+                        "titles": "Unit 16-17 Reading & Movers Practice",
+                        "vocab": "comprehension, fluency, grammar structure, speaking interaction"
+                  },
+                  {
+                        "type": "Writing / Grammar",
+                        "titles": "WR1 & New Round Up",
+                        "vocab": "sentence building, tenses, question formation"
+                  }
+            ]
       },
       "U21_DEFAULT": {
-        unitLabel: "Unit 21",
-        lessonLabel: "Lesson 24 (Flyer / Reading 2)",
-        components: [
-          { type: "Song", titles: "Cambridge Flyers Speaking & Listening", vocab: "Describing differences, picture story" },
-          { type: "Story", titles: "WR 2 & Reading 2", vocab: "Academic vocabulary, reading inference" },
-          { type: "Phonogram", titles: "New Round Up 2", vocab: "" }
-        ]
+            "unitLabel": "Unit 21",
+            "lessonLabel": "New Round Up 2",
+            "components": [
+                  {
+                        "type": "Flyers / Academic",
+                        "titles": "Unit 21 Reading 2 & Flyers Skills",
+                        "vocab": "academic vocabulary, reading comprehension, listening & speaking fluency"
+                  },
+                  {
+                        "type": "Grammar",
+                        "titles": "WR 2 & New Round Up 2",
+                        "vocab": "complex sentences, grammar in context"
+                  }
+            ]
       }
-    };
+};
 
     const CLASSES_DATA = {
       "KD28": {
         code: "KD28", time: "17:30 - 18:10", unitReal: "Unit 1", defaultRoom: "P.301", presetKey: "U1_L08",
         lessonsByDate: {
-          "2026-10-19": { lesson: "Lesson 05", session: "5/32", presetOverride: "U1_L06" },
+          "2026-10-19": { lesson: "Lesson 05", session: "5/32", presetOverride: "U1_L05" },
           "2026-10-20": { lesson: "Lesson 06", session: "6/32", presetOverride: "U1_L06" },
-          "2026-10-21": { lesson: "Lesson 07", session: "7/32", presetOverride: "U1_L08" },
+          "2026-10-21": { lesson: "Lesson 07", session: "7/32", presetOverride: "U1_L07" },
           "2026-10-22": { lesson: "Lesson 8", session: "8/32", presetOverride: "U1_L08" },
-          "2026-10-26": { lesson: "Lesson 09", session: "9/32", presetOverride: "U1_L08" },
-          "2026-10-27": { lesson: "Lesson 10", session: "10/32", presetOverride: "U1_L08" },
-          "2026-10-28": { lesson: "Lesson 11", session: "11/32", presetOverride: "U1_L08" },
-          "2026-10-29": { lesson: "Lesson 12", session: "12/32", presetOverride: "U1_L08" }
+          "2026-10-26": { lesson: "Lesson 09", session: "9/32", presetOverride: "U1_L09" },
+          "2026-10-27": { lesson: "Lesson 10", session: "10/32", presetOverride: "U1_L10" },
+          "2026-10-28": { lesson: "Lesson 11", session: "11/32", presetOverride: "U1_L11" },
+          "2026-10-29": { lesson: "Lesson 12", session: "12/32", presetOverride: "U1_L12" }
         },
         students: [
           { id: "s28_1", name: "Milo" },
@@ -1028,8 +2179,7 @@
       const cls = CLASSES_DATA[activeClassCode] || CLASSES_DATA["KD28"];
       const lessonInfo = (cls.lessonsByDate && cls.lessonsByDate[dayObj.date]) || { lesson: "Lesson 8", session: "8/32" };
 
-      if (selectedPresetMode === "U1_L06") return LESSON_CONTENT_PRESETS["U1_L06"];
-      if (selectedPresetMode === "U1_L08") return LESSON_CONTENT_PRESETS["U1_L08"];
+      if (selectedPresetMode !== "AUTO" && LESSON_CONTENT_PRESETS[selectedPresetMode]) return LESSON_CONTENT_PRESETS[selectedPresetMode];
 
       const key = lessonInfo.presetOverride || cls.presetKey || "U1_L08";
       const base = LESSON_CONTENT_PRESETS[key] || LESSON_CONTENT_PRESETS["U1_L08"];
@@ -1164,10 +2314,16 @@
             <span class="text-[var(--primary)] font-semibold">▾ Xem chi tiết</span>
           </summary>
           <div class="mt-2.5 pt-2.5 border-t border-[var(--border)] space-y-2">
-            <div class="flex gap-1 flex-wrap">
-              <button onclick="selectedPresetMode='AUTO'; renderMainView();" class="px-2 py-0.5 rounded text-xs font-semibold ${selectedPresetMode === 'AUTO' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--card)] border border-[var(--border)]'}">Tự động (${cls.code})</button>
-              <button onclick="selectedPresetMode='U1_L06'; renderMainView();" class="px-2 py-0.5 rounded text-xs font-semibold ${selectedPresetMode === 'U1_L06' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--card)] border border-[var(--border)]'}">Mẫu U1 - Lesson 06</button>
-              <button onclick="selectedPresetMode='U1_L08'; renderMainView();" class="px-2 py-0.5 rounded text-xs font-semibold ${selectedPresetMode === 'U1_L08' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--card)] border border-[var(--border)]'}">Mẫu U1 - Lesson 8</button>
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <button onclick="selectedPresetMode='AUTO'; renderMainView();" class="px-2 py-1 rounded text-xs font-semibold ${selectedPresetMode === 'AUTO' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--card)] border border-[var(--border)]'}">Tự động theo lịch (${cls.code})</button>
+              <select onchange="selectedPresetMode=this.value; renderMainView();" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded px-2 py-1 text-xs font-semibold">
+                <option value="AUTO" ${selectedPresetMode === 'AUTO' ? 'selected' : ''}>-- Đổi bài học Unit 1 (Lesson 01 - 30) --</option>
+                ${Array.from({length: 30}, (_, i) => {
+                  const k = 'U1_L' + String(i+1).padStart(2, '0');
+                  const lbl = 'Unit 1 - Lesson ' + String(i+1).padStart(2, '0');
+                  return `<option value="${k}" ${selectedPresetMode === k ? 'selected' : ''}>${lbl}</option>`;
+                }).join('')}
+              </select>
             </div>
             <div class="space-y-1">
               ${content.components.map(c => `
